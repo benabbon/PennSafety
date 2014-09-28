@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+    
+    <EditText 
+        android:id="@+id/name_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        />
+    
+    <EditText 
+        android:id="@+id/email_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email Address"
+        />
+    
+    <Button 
+        android:id="@+id/subscribe_to_updates"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF0000"
+        android:text="Subscribe to Updates"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:textColor="#FFFFFF"
+        />
+    
+
+</LinearLayout>
