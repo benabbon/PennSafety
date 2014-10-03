@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/nabilbenabbou1/Desktop/shs-heart-defib-master/manatee/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-fe930dc68beb1e566675ce71b270d4091c6c249b.jar"
+        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="/Users/nabilbenabbou1/Desktop/shs-heart-defib-master/manatee/app/build/intermediates/pre-dexed/debug/classes-2f6890b4f1c5f9eb196b0700f1585e70f24bdf62.jar"
+        jar="/Users/nabilbenabbou1/Desktop/shs-heart-defib-master/manatee/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/5.2.08/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="1ed7a7a05185651f9af41ad93711cb96b66f331c"/>
+    <item
+        dex="/Users/nabilbenabbou1/Desktop/shs-heart-defib-master/manatee/app/build/intermediates/pre-dexed/debug/Parse-1.4.2-2796426ae160eca1241e951a85b2bc51338eb561.jar"
+        jar="/Users/nabilbenabbou1/Desktop/shs-heart-defib-master/manatee/app/libs/Parse-1.4.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="eff28d7e2ff7c6cf1d312079af5d4152bc5cb48b"/>
+
+</pre-dex-items>
