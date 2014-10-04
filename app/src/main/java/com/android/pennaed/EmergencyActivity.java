@@ -220,6 +220,9 @@ public class EmergencyActivity extends Activity{
 	private void setMap(){
 		aedArrayList = pennAedApp._appVars.getAEDArrayList();
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+		if (map == null) {
+			return;
+		}
 		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE); 
 		Location location = null;
