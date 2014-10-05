@@ -72,9 +72,9 @@ public class EmergencyActivity extends Activity{
 			for(AED aed : aedArrayList){
 				if(aed.getId().equals(aedId)){
 					aedInbuildingDirections.setText(aed.getInBuildingLocation());
+					mapOverlayLayout.setVisibility(View.VISIBLE);
 				}
 			}
-			//mapOverlayLayout.setVisibility(View.VISIBLE);
 			return true;
 		}
 	};
