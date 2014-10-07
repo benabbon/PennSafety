@@ -67,16 +67,6 @@
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
             android:layout_weight="1.0" />
-
-        <Button
-            android:id="@+id/maintenance_button"
-            android:layout_width="0.0dip" 
-            android:layout_height="fill_parent"
-            android:background="@android:color/holo_blue_light"
-            android:text="@string/maintenance_lc"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
-            android:layout_weight="1.0" />
     </LinearLayout>
  
 </RelativeLayout>

@@ -45,8 +45,7 @@ public class EmergencyActivity extends Activity{
 	private View emergencyAedInstructionsView;
 	
 	private Button emergencyButton;
-	private Button maintenanceButton;
-	
+
 	private TextView backButton;
 	
 	private Button emergencyStartButton;
@@ -88,10 +87,6 @@ public class EmergencyActivity extends Activity{
 			
 			switch(v.getId()){
 				case R.id.emergency_button:
-					break;
-				case R.id.maintenance_button:	
-					Intent maintenanceIntent = new Intent(EmergencyActivity.this, MaintenanceActivity.class);
-					EmergencyActivity.this.startActivity(maintenanceIntent);
 					break;
 				case R.id.emergency_back_button:
 					setPrevious();
@@ -206,10 +201,8 @@ public class EmergencyActivity extends Activity{
 		
 		backButton = (TextView)findViewById(R.id.emergency_back_button);
 		emergencyButton = (Button)findViewById(R.id.emergency_button) ;
-		maintenanceButton = (Button)findViewById(R.id.maintenance_button) ;
 		backButton.setOnClickListener(clickListener);
 		emergencyButton.setOnClickListener(clickListener);
-		maintenanceButton.setOnClickListener(clickListener);		
 	}
 	
 	private void setFields(){

@@ -3,11 +3,8 @@
 
     <string name="app_name">Penn AED</string>
     <string name="title_activity_emergency">Penn AED</string>
-    <string name="title_activity_maintenance">Maintenance</string>
-    
+
     <string name="emergency_lc">Emergency</string>
-    <string name="maintenance_lc">Maintenance</string>
-    
     <string name="emergency_top_back"> &lt; BACK </string>
     
     <string name="emergency_start_text">Click the following button if there is an emergency:</string>
