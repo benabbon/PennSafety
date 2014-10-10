@@ -1,18 +1,18 @@
 package com.android.pennaed;
 
-import java.util.ArrayList;
-
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.app.Activity;
-import android.content.Intent;
 
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.Marker;
+
+import java.util.ArrayList;
 
 public class EmergencyActivity extends Activity {
 
