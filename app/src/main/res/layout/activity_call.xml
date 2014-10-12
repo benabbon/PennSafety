@@ -1,0 +1,38 @@
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+android:layout_centerHorizontal="true"
+android:layout_centerVertical="true"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+tools:context="com.android.pennaed.emergency.CallActivity">
+
+
+<TextView
+    android:id="@+id/emergency_start_button_text"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:layout_marginBottom="20dp"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:text="@string/emergency_call_text"/>
+
+<Button
+    android:id="@+id/call_button"
+    android:background="@android:color/holo_red_light"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp"
+    android:textStyle="bold"
+    android:textSize="25sp"
+    android:text="@string/call_button"
+    android:onClick="onCall"/>
+
+</LinearLayout>
+

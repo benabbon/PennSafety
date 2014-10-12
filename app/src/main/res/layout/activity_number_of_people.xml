@@ -1,0 +1,57 @@
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/people_around_layout"
+android:layout_width="fill_parent"
+android:layout_height="match_parent"
+android:layout_centerHorizontal="true"
+android:layout_centerVertical="true"
+android:orientation="vertical"
+tools:context="com.android.pennaed.emergency.NumberOfPeopleActivity"
+android:onClick="onClickOnePerson">
+
+
+<TextView
+    android:id="@+id/emergency_start_button_text"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:layout_marginBottom="20dp"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:text="@string/number_of_people_prompt"/>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp" >
+
+    <Button
+        android:id="@+id/one_person_button"
+        android:layout_width="0.0dip"
+        android:background="@android:color/holo_red_light"
+        android:layout_height="fill_parent"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:text="@string/people_1"
+        android:layout_weight="1.0"
+        android:onClick="onClickOnePerson"/>
+
+    <Button
+        android:id="@+id/more_than_one_person_button"
+        android:layout_width="0.0dip"
+        android:background="@android:color/holo_blue_light"
+        android:layout_height="fill_parent"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:text="@string/people_1_more"
+        android:layout_weight="1.0"
+        android:onClick="onClickMoreThanOnePerson"/>
+</LinearLayout>
+</LinearLayout>

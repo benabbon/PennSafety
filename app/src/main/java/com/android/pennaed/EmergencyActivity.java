@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.pennaed.emergency.AEDInstructionsActivity;
+import com.android.pennaed.emergency.CallActivity;
+import com.android.pennaed.emergency.NumberOfPeopleActivity;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.Marker;
 
@@ -67,11 +69,40 @@ public class EmergencyActivity extends Activity {
 		}
 	};
 
-	public void openInstructions(){
+	public void openInstructions(){//to be deleted afterwards, same method in AEDMap
 		Intent i = new Intent(this, AEDInstructionsActivity.class);
 		startActivityForResult(i,PennAEDFinals.EMERGENCY_AED_INSTRUCTIONS);
 	}
 
+
+	public void onCall(){//to be deleted afterwards, same method in NumberOfPeopleActivity
+		Intent i = new Intent(this, CallActivity.class);
+		startActivityForResult(i,PennAEDFinals.EMERGENCY_CPR_QUESTION);
+	}
+
+	public void numberOfPeople(){
+		Intent i = new Intent(this, NumberOfPeopleActivity.class);
+		startActivityForResult(i,PennAEDFinals.EMERGENCY_PEOPLE);
+	}
+
+	public void onClickNeedCPR(){
+		AppVars.getInstance().setCPRNeeded(true);
+		AppVars.getInstance().setEmergencyStep(PennAEDFinals.EMERGENCY_CPR_INSTRUCTIONS);
+//		loadView();
+
+	}
+
+	public void onClickNoCPRNeeded(){
+
+		AppVars.getInstance().setCPRNeeded(false);
+		if (AppVars.getInstance().getOnlyOnePerson()) {
+			AppVars.getInstance().setEmergencyStep(PennAEDFinals.EMERGENCY_WAIT);
+		} else {
+			AppVars.getInstance().setEmergencyStep(PennAEDFinals.EMERGENCY_AED_MAP);
+		}
+//		loadView();
+
+	}
 
 	private View.OnClickListener clickListener = new View.OnClickListener() {
 
@@ -85,46 +116,44 @@ public class EmergencyActivity extends Activity {
 					setPrevious();
 					loadView();
 					break;
-				case R.id.emergency_start_button:
-					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_PEOPLE);
-					loadView();
+				case R.id.emergency_start_button://should call NumberOfPeople
+//					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_PEOPLE);
+//					loadView();
+					numberOfPeople();
 					break;
 				case R.id.one_person_button:
-					pennAedApp._appVars.setOnlyOnePerson(true);
-					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_CALL);
-					loadView();
+					onCall();
+//					numberOfPeople();//won't be here
 					break;
 				case R.id.more_than_one_person_button:
-					pennAedApp._appVars.setOnlyOnePerson(false);
-					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_CALL);
-					loadView();
+//					numberOfPeople();//won't be here
+					onCall();
 					break;
 				case R.id.call_button:
-					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_CPR_QUESTION);
-					Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(PennAEDFinals.EMERGENCY_PHONE_NUMBER));
-					startActivity(callIntent);
+//					onCall();
+					//actual call, shifted to CallActivity
 					break;
 				case R.id.cpr_yes:
-					pennAedApp._appVars.setCPRNeeded(true);
-					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_CPR_INSTRUCTIONS);
-					loadView();
+//					pennAedApp._appVars.setCPRNeeded(true);
+//					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_CPR_INSTRUCTIONS);
+//					loadView();
+					onClickNeedCPR();
 					break;
 				case R.id.cpr_no:
-					pennAedApp._appVars.setCPRNeeded(false);
-					if (pennAedApp._appVars.getOnlyOnePerson()) {
-						pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_WAIT);
-					} else {
-						pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_AED_MAP);
-					}
-					loadView();
+//					pennAedApp._appVars.setCPRNeeded(false);
+//					if (pennAedApp._appVars.getOnlyOnePerson()) {
+//						pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_WAIT);
+//					} else {
+//						pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_AED_MAP);
+//					}
+//					loadView();
+					onClickNoCPRNeeded();
 					break;
 				case R.id.aed_button:
 					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_AED_MAP);
 					loadView();
 					break;
 				case R.id.found_aed_button:
-					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_AED_INSTRUCTIONS);
-//					loadView();
 					openInstructions();
 				default:
 					break;

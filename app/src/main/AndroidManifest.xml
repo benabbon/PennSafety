@@ -60,6 +60,22 @@
             android:name=".emergency.AEDInstructionsActivity"
             android:label="@string/title_activity_aedinstructions" >
         </activity>
+        <activity
+            android:name=".emergency.CallActivity"
+            android:label="@string/title_activity_call" >
+        </activity>
+        <activity
+            android:name=".emergency.NeedCPRActivity"
+            android:label="@string/title_activity_need_cpr" >
+        </activity>
+        <activity
+            android:name=".emergency.CPRInstructions"
+            android:label="@string/title_activity_cprinstructions" >
+        </activity>
+        <activity
+            android:name=".emergency.WaitForHelp"
+            android:label="@string/title_activity_wait_for_help" >
+        </activity>
     </application>
 
 </manifest>
