@@ -43,4 +43,6 @@
     <string name="aed_insn_11">After shock AED will prompt users to continue CPR</string>
     <string name="subscribe">Subscribe</string>
     <string name="edit">Update Info!</string>
+    <string name="title_activity_aedinstructions">AEDInstructionsActivity</string>
+
 </resources>

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.pennaed.emergency.AEDInstructionsActivity;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.Marker;
 
@@ -66,6 +67,11 @@ public class EmergencyActivity extends Activity {
 		}
 	};
 
+	public void openInstructions(){
+		Intent i = new Intent(this, AEDInstructionsActivity.class);
+		startActivityForResult(i,PennAEDFinals.EMERGENCY_AED_INSTRUCTIONS);
+	}
+
 
 	private View.OnClickListener clickListener = new View.OnClickListener() {
 
@@ -118,7 +124,8 @@ public class EmergencyActivity extends Activity {
 					break;
 				case R.id.found_aed_button:
 					pennAedApp._appVars.setEmergencyStep(PennAEDFinals.EMERGENCY_AED_INSTRUCTIONS);
-					loadView();
+//					loadView();
+					openInstructions();
 				default:
 					break;
 			}
