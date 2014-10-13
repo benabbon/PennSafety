@@ -1,19 +1,28 @@
 package com.android.pennaed.emergency;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.android.pennaed.AppVars;
 import com.android.pennaed.R;
 
 public class CPRInstructions extends Activity {
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_cprinstructions);
+		if (AppVars.getInstance().getOnlyOnePerson()) {
+			Button aedLocations = (Button) findViewById(R.id.aed_button);
+			aedLocations.setVisibility(View.INVISIBLE);
+		}
+	}
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cprinstructions);
-    }
-
+	public void onClickAEDLocations(View view) {
+		Intent i = new Intent(this, AEDMapActivity.class);
+		startActivity(i);
+	}
 }

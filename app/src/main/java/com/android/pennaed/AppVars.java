@@ -40,7 +40,6 @@ public class AppVars {
 	public static synchronized AppVars getInstance() {
 		if (instance == null) {
 			instance = new AppVars();
-			instance.setEmergencyStep(PennAEDFinals.EMERGENCY_START);
 			instance.setOnlyOnePerson(true);
 			instance.setCPRNeeded(true);
 			instance.setAEDArrayList();
@@ -82,28 +81,28 @@ public class AppVars {
 		return aedIntegerMap.get(id);
 	}
 
-	public void setEmergencyStep(int emergencyStep) {
-		this.emergencyStep = emergencyStep;
-	}
-
 	public int getEmergencyStep() {
 		return emergencyStep;
 	}
 
-	public void setOnlyOnePerson(boolean onlyOnePerson) {
-		this.onlyOnePerson = onlyOnePerson;
+	public void setEmergencyStep(int emergencyStep) {
+		this.emergencyStep = emergencyStep;
 	}
 
 	public boolean getOnlyOnePerson() {
 		return onlyOnePerson;
 	}
 
-	public void setCPRNeeded(boolean cprNeeded) {
-		this.cprNeeded = cprNeeded;
+	public void setOnlyOnePerson(boolean onlyOnePerson) {
+		this.onlyOnePerson = onlyOnePerson;
 	}
 
 	public boolean getCPRNeeded() {
 		return cprNeeded;
+	}
+
+	public void setCPRNeeded(boolean cprNeeded) {
+		this.cprNeeded = cprNeeded;
 	}
 
 	public void addToMarkerAedHM(String markerId, String aedId) {

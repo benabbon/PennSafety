@@ -27,7 +27,7 @@ public class AEDMap {
 	private double currentLongitude;
 	private LatLng currentPosition;
 
-	protected void setMap(ArrayList<AED> aedArrayList, Activity parentActivity, OnMarkerClickListener markerClickListener) {
+	public void setMap(ArrayList<AED> aedArrayList, Activity parentActivity, OnMarkerClickListener markerClickListener) {
 
 		map = ((MapFragment) parentActivity.getFragmentManager().findFragmentById(R.id.map)).getMap();
 		if (map == null) {

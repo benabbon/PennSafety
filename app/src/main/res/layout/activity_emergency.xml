@@ -1,72 +1,40 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    tools:context=".EmergencyActivity" 
-     android:background="#FFFFFF">
-     
-    <LinearLayout
-        android:id="@+id/emergency_top_nav"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="@android:color/background_light"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.android.pennaed.EmergencyActivity">
+
+    <TextView
+        android:id="@+id/emergency_start_button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center_horizontal"
+        android:text="@string/emergency_start_text"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/emergency_start_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#EEEEEE"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp" >
-
-        <TextView
-            android:id="@+id/emergency_back_button"
-			android:paddingLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#333333"
-            android:text="@string/emergency_top_back" />
-
-        <TextView
-            android:id="@+id/Title_Bar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/app_name"
-            android:textColor="@android:color/holo_green_dark"
-            android:textSize="20sp"
-            android:layout_marginLeft="-58dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-     
-    <LinearLayout
-    	android:id="@+id/emergency_main_layout"
-    	android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical" > 
-        
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="0dp" >
-        
-        <Button
-            android:id="@+id/emergency_button"
-            android:layout_width="0.0dip" 
-            android:layout_height="fill_parent"
-            android:background="@android:color/holo_red_light"
-            android:text="@string/emergency_lc"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
-            android:layout_weight="1.0" />
-    </LinearLayout>
- 
-</RelativeLayout>
+        android:layout_gravity="center"
+        android:background="@android:color/holo_red_light"
+        android:gravity="center_vertical|center_horizontal|fill_vertical"
+        android:onClick="onClickEmergencyStart"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:singleLine="false"
+        android:text="@string/emergency_start_button"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+</LinearLayout>
