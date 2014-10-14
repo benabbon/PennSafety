@@ -2,21 +2,15 @@
 <resources>
 
     <string name="app_name">Penn AED</string>
-    <string name="title_activity_emergency">Penn AED</string>
-
     <string name="emergency_lc">Emergency</string>
-    <string name="emergency_top_back"> &lt; BACK </string>
-    
     <string name="emergency_start_text">Click the following button if there is an emergency:</string>
     <string name="emergency_start_button">EMERGENCY</string>
-    
+    <string name="emergency_call_button">EMERGENCY CONTACT</string>
     <string name="number_of_people_prompt">How many people are at the scene?</string>
     <string name="people_1">1</string>
     <string name="people_1_more">2 or more</string>
-	
     <string name="emergency_call_text">Press the following button to call for help: </string>
     <string name="call_button">Press to Call</string>
-    
     <string name="cpr_question_text">Is CPR needed?</string>
     <string name="cpr_yes">YES</string>
     <string name="cpr_no">NO</string>
@@ -26,9 +20,7 @@
     <string name="cpr_insn_3">100 compressions per minute</string>
     <string name="cpr_insn_4">Continue until help arrives</string>
     <string name="get_aed_location_text">Click here for AED locations</string>
-    
     <string name="emergency_wait">Please stay calm \n An ambulance is on its way</string>
-    
     <string name="aed_insn_title">AED Instructions</string>
     <string name="aed_insn_1">Take AED to patient</string>
     <string name="aed_insn_2">Open lid of AED</string>
@@ -41,6 +33,17 @@
     <string name="aed_insn_9">AED will voice prompt if shock is advised</string>
     <string name="aed_insn_10">Stand clear of patient if shock is advised</string>
     <string name="aed_insn_11">After shock AED will prompt users to continue CPR</string>
-    <string name="subscribe">Subscribe</string>
-    <string name="edit">Update Info!</string>
+    <string name="title_activity_emergency">Penn Emergency</string>
+    <string name="title_activity_numberofpeople">How many are you ?</string>
+    <string name="title_activity_aedinstructions">AED Instructions</string>
+    <string name="title_activity_call">Call for Help</string>
+    <string name="title_activity_need_cpr">Need CPR ?</string>
+    <string name="title_activity_cprinstructions">Instructions to give CPR</string>
+    <string name="title_activity_wait_for_help">Wait For Help</string>
+    <string name="title_activity_aedmap">AED Locations</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="main_activity">Emergency Numbers</string>
+    <string name="info_page">Organization Info</string>
+
 </resources>

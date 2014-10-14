@@ -1,0 +1,57 @@
+<LinearLayout
+    android:id="@+id/people_around_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.android.pennaed.emergency.NeedCPRActivity">
+
+
+    <TextView
+        android:id="@+id/cpr_question_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center_horizontal"
+        android:text="@string/cpr_question_text"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp">
+
+        <Button
+            android:id="@+id/cpr_yes"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@android:color/holo_green_light"
+            android:onClick="onClickCPRNeeded"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="@string/cpr_yes"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/cpr_no"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@android:color/holo_red_light"
+            android:onClick="onClickCPRNotNeeded"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="@string/cpr_no"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</LinearLayout>
