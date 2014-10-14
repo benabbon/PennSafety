@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.android.pennaed.campussafety.MainActivity;
 import com.android.pennaed.emergency.NumberOfPeopleActivity;
 
 public class EmergencyActivity extends Activity {
@@ -19,4 +20,10 @@ public class EmergencyActivity extends Activity {
 		Intent i = new Intent(this, NumberOfPeopleActivity.class);
 		startActivity(i);
 	}
+
+    public void onClickEmergencyCall(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
 }

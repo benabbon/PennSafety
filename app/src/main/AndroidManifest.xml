@@ -85,6 +85,14 @@
             android:name=".emergency.AEDMapActivity"
             android:label="@string/title_activity_aedmap">
         </activity>
+        <activity
+            android:name="com.android.pennaed.campussafety.MainActivity"
+            android:label="@string/main_activity">
+        </activity>
+        <activity
+            android:name="com.android.pennaed.campussafety.Info"
+            android:label="@string/info_page">
+        </activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@
     <string name="emergency_lc">Emergency</string>
     <string name="emergency_start_text">Click the following button if there is an emergency:</string>
     <string name="emergency_start_button">EMERGENCY</string>
+    <string name="emergency_call_button">EMERGENCY CONTACT</string>
     <string name="number_of_people_prompt">How many people are at the scene?</string>
     <string name="people_1">1</string>
     <string name="people_1_more">2 or more</string>
@@ -40,5 +41,9 @@
     <string name="title_activity_cprinstructions">Instructions to give CPR</string>
     <string name="title_activity_wait_for_help">Wait For Help</string>
     <string name="title_activity_aedmap">AED Locations</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="main_activity">Emergency Numbers</string>
+    <string name="info_page">Organization Info</string>
 
 </resources>
