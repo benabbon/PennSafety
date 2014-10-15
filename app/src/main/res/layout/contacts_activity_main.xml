@@ -15,6 +15,6 @@
         android:layout_height="80dp"
         android:layout_weight="0.5"
         android:onClick="addContact"
-        android:text="Add Emergency Contact"/>
+        android:text="@string/add_emergency_contact_button"/>
 
 </LinearLayout>

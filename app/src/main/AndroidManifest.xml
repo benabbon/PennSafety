@@ -31,7 +31,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".PennAEDApp"
+        android:name=".emergency.PennAEDApp"
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@drawable/redcross"
@@ -47,7 +47,7 @@
             android:value="@integer/google_play_services_version"/>
 
         <activity
-            android:name=".EmergencyActivity"
+            android:name=".emergency.EmergencyActivity"
             android:label="@string/title_activity_emergency"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar">
@@ -74,11 +74,11 @@
             android:label="@string/title_activity_need_cpr">
         </activity>
         <activity
-            android:name=".emergency.CPRInstructions"
+            android:name=".emergency.CPRInstructionsActivity"
             android:label="@string/title_activity_cprinstructions">
         </activity>
         <activity
-            android:name=".emergency.WaitForHelp"
+            android:name=".emergency.WaitForHelpActivity"
             android:label="@string/title_activity_wait_for_help">
         </activity>
         <activity
@@ -86,11 +86,11 @@
             android:label="@string/title_activity_aedmap">
         </activity>
         <activity
-            android:name="com.android.pennaed.campussafety.MainActivity"
+            android:name="com.android.pennaed.contacts.MainActivity"
             android:label="@string/main_activity">
         </activity>
         <activity
-            android:name="com.android.pennaed.campussafety.Info"
+            android:name="com.android.pennaed.contacts.Info"
             android:label="@string/info_page">
         </activity>
     </application>

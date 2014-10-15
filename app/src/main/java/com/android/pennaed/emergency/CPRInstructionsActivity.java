@@ -6,15 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.pennaed.AppVars;
 import com.android.pennaed.R;
 
-public class CPRInstructions extends Activity {
+public class CPRInstructionsActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cprinstructions);
+		setContentView(R.layout.emergency_activity_cprinstructions);
 		if (AppVars.getInstance().getOnlyOnePerson()) {
 			Button aedLocations = (Button) findViewById(R.id.aed_button);
 			aedLocations.setVisibility(View.INVISIBLE);

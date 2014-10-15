@@ -1,19 +1,19 @@
-package com.android.pennaed;
+package com.android.pennaed.emergency;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.android.pennaed.campussafety.MainActivity;
-import com.android.pennaed.emergency.NumberOfPeopleActivity;
+import com.android.pennaed.R;
+import com.android.pennaed.contacts.MainActivity;
 
 public class EmergencyActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_emergency);
+		setContentView(R.layout.emergency_activity_main);
 	}
 
 	public void onClickEmergencyStart(View view) {

@@ -8,7 +8,7 @@
     android:background="@android:color/background_light"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
-    tools:context="com.android.pennaed.EmergencyActivity">
+    tools:context="com.android.pennaed.emergency.EmergencyActivity">
 
     <TextView
         android:id="@+id/emergency_start_button_text"

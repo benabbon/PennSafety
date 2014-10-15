@@ -1,4 +1,4 @@
-package com.android.pennaed.campussafety;
+package com.android.pennaed.contacts;
 
 /*
  * Class created to hold all string constants used in MainActivity.

@@ -10,7 +10,7 @@ public class AEDInstructionsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_aedinstructions);
+		setContentView(R.layout.emergency_activity_aedinstructions);
 	}
 
 }

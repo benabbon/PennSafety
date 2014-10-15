@@ -1,4 +1,4 @@
-package com.android.pennaed.campussafety;
+package com.android.pennaed.contacts;
 
 /*
  * Class uses geometry to check if a point lies inside of a polygon

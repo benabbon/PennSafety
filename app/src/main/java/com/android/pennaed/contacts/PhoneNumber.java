@@ -1,4 +1,4 @@
-package com.android.pennaed.campussafety;
+package com.android.pennaed.contacts;
 
 /*
  * Class that holds helper methods for converting a string to a number

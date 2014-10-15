@@ -1,4 +1,4 @@
-package com.android.pennaed;
+package com.android.pennaed.emergency;
 
 import android.util.Log;
 

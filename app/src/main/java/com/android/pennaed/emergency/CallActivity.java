@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-import com.android.pennaed.PennAEDFinals;
 import com.android.pennaed.R;
 
 public class CallActivity extends Activity {
@@ -17,7 +16,7 @@ public class CallActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_call);
+		setContentView(R.layout.emergency_activity_call);
 	}
 
 	@Override

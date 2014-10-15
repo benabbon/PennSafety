@@ -1,4 +1,4 @@
-package com.android.pennaed.campussafety;
+package com.android.pennaed.contacts;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ public class Info extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.info_layout);
+		setContentView(R.layout.contacts_info_layout);
 
 		String title = getIntent().getStringExtra("Title");
 		String info = getIntent().getStringExtra("Info");

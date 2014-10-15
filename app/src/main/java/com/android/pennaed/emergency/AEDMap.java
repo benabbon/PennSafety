@@ -1,4 +1,4 @@
-package com.android.pennaed;
+package com.android.pennaed.emergency;
 
 
 import android.app.Activity;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 
+import com.android.pennaed.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;

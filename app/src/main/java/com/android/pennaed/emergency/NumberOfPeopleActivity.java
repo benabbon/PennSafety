@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.android.pennaed.AppVars;
 import com.android.pennaed.R;
 
 public class NumberOfPeopleActivity extends Activity {
@@ -13,7 +12,7 @@ public class NumberOfPeopleActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_number_of_people);
+		setContentView(R.layout.emergency_activity_number_of_people);
 	}
 
 	public void onClickOnePerson(View view) {

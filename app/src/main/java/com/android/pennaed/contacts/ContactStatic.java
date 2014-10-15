@@ -1,4 +1,4 @@
-package com.android.pennaed.campussafety;
+package com.android.pennaed.contacts;
 
 import com.android.pennaed.R;
 

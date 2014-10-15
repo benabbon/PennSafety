@@ -1,4 +1,4 @@
-package com.android.pennaed.campussafety;
+package com.android.pennaed.contacts;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,7 +23,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 	private Context context;
 
 	public ContactAdapter(List<Contact> contactList, Context ctx) {
-		super(ctx, R.layout.row_layout, contactList);
+		super(ctx, R.layout.contacts_row_layout, contactList);
 		this.contactList = contactList;
 		this.context = ctx;
 	}
@@ -49,7 +49,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 			// This a new view we inflate the new layout
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.row_layout, null);
+			v = inflater.inflate(R.layout.contacts_row_layout, null);
 			// Now we can fill the layout with the right values
 			TextView name = (TextView) v.findViewById(R.id.contactName);
 			TextView info = (TextView) v.findViewById(R.id.contactInfo);

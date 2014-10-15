@@ -7,7 +7,7 @@
     android:layout_centerVertical="true"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
-    tools:context="com.android.pennaed.emergency.CPRInstructions">
+    tools:context="com.android.pennaed.emergency.CPRInstructionsActivity">
 
     <TextView
         android:id="@+id/cpr_insn_title"

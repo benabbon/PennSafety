@@ -1,4 +1,4 @@
-package com.android.pennaed.campussafety;
+package com.android.pennaed.contacts;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,8 +28,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.pennaed.R;
-import com.android.pennaed.campussafety.ContactStatic.Day;
-import com.android.pennaed.campussafety.ContactStatic.Hours;
+import com.android.pennaed.contacts.ContactStatic.Day;
+import com.android.pennaed.contacts.ContactStatic.Hours;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -65,7 +65,7 @@ public class MainActivity extends Activity implements LocationListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.contacts_activity_main);
 
 		initContacts();
 
@@ -434,7 +434,7 @@ public class MainActivity extends Activity implements LocationListener {
 	 */
 	public void addContact(View view) {
 		final Dialog d = new Dialog(this);
-		d.setContentView(R.layout.dialog);
+		d.setContentView(R.layout.contacts_dialog);
 		d.setTitle("Add contact");
 		d.setCancelable(true);
 

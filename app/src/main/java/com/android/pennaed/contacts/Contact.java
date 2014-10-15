@@ -1,4 +1,4 @@
-package com.android.pennaed.campussafety;
+package com.android.pennaed.contacts;
 
 /*
  * Interface that lists all methods that need to be implemented by 
