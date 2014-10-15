@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.android.pennaed.contacts.ContactsFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/add_emergency_contact_button"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="0.5"
+            android:text="@string/add_emergency_contact_button"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

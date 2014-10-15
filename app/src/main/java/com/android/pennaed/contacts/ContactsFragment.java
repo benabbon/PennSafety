@@ -1,8 +1,8 @@
 package com.android.pennaed.contacts;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,34 +17,35 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.pennaed.R;
-import com.android.pennaed.contacts.ContactStatic.Day;
-import com.android.pennaed.contacts.ContactStatic.Hours;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
-import com.parse.ParseQuery.CachePolicy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by nabilbenabbou1 on 10/14/14.
+ */
+
 /*
- * MainActivity is the main page of the application containing all the
+ * this is the main page of the part containing all the
  * emergency contacts.
  */
-public class MainActivity extends Activity implements LocationListener {
+public class ContactsFragment extends Fragment implements LocationListener {
 
 	private final String dps = "5514866991";
 	Bitmap bitmap;
@@ -62,27 +63,35 @@ public class MainActivity extends Activity implements LocationListener {
 	private boolean networkEnabled;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.contacts_activity_main);
-
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	                         Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_contacts_main, container,
+				false);
 		initContacts();
-
 		initLocation();
-
-		adapter = new ContactAdapter(contactList, this);
+		adapter = new ContactAdapter(contactList, getActivity());
 		bitmap = BitmapFactory.decodeResource(getResources(),
 				R.drawable.android);
 		updateData();
-		ListView lv = (ListView) findViewById(R.id.listView);
+		ListView lv = (ListView) view.findViewById(R.id.listView);
 		lv.setAdapter(adapter);
 		setListener(lv);
 		registerForContextMenu(lv);
+
+		//add_emergency_contact_button
+		Button addContactButton = (Button) view.findViewById(R.id.add_emergency_contact_button);
+		addContactButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addContact(v);
+			}
+		});
+		return view;
 	}
 
 	private void initLocation() {
-		LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+		LocationManager service = (LocationManager) getActivity().
+				getSystemService(getActivity().LOCATION_SERVICE);
 		gpsEnabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
 		networkEnabled = service
 				.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -92,7 +101,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 		if (!gpsEnabled) {
 
-			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+			AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
 
 			// Setting Dialog Title
 			alertDialog.setTitle("GPS Disabled...");
@@ -128,7 +137,7 @@ public class MainActivity extends Activity implements LocationListener {
 			alertDialog.show();
 		}
 
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
 		// Define the criteria of how to select the location provider. This uses
 		// the default
@@ -150,7 +159,7 @@ public class MainActivity extends Activity implements LocationListener {
 	 */
 	public void updateData() {
 		ParseQuery<ContactDB> query = ParseQuery.getQuery(ContactDB.class);
-		query.setCachePolicy(CachePolicy.CACHE_THEN_NETWORK);
+		query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
 		query.findInBackground(new FindCallback<ContactDB>() {
 
 			@Override
@@ -181,7 +190,7 @@ public class MainActivity extends Activity implements LocationListener {
 						startActivity(intent);
 					} else {
 						Toast.makeText(
-								MainActivity.this,
+								getActivity(),
 								c.getName()
 										+ " is out of range, redirecting to DPS...",
 								Toast.LENGTH_LONG).show();
@@ -192,7 +201,7 @@ public class MainActivity extends Activity implements LocationListener {
 					}
 				} else {
 					Toast.makeText(
-							MainActivity.this,
+							getActivity(),
 							c.getName()
 									+ " is unavailable right now, redirecting to DPS...",
 							Toast.LENGTH_LONG).show();
@@ -210,10 +219,10 @@ public class MainActivity extends Activity implements LocationListener {
 	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
-	                                ContextMenuInfo menuInfo) {
+	                                ContextMenu.ContextMenuInfo menuInfo) {
 
 		super.onCreateContextMenu(menu, v, menuInfo);
-		AdapterContextMenuInfo aInfo = (AdapterContextMenuInfo) menuInfo;
+		AdapterView.AdapterContextMenuInfo aInfo = (AdapterView.AdapterContextMenuInfo) menuInfo;
 
 		Contact contact = adapter.getItem(aInfo.position);
 
@@ -235,12 +244,12 @@ public class MainActivity extends Activity implements LocationListener {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		int itemId = item.getItemId();
-		AdapterContextMenuInfo aInfo = (AdapterContextMenuInfo) item
+		AdapterView.AdapterContextMenuInfo aInfo = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
 		Contact c = contactList.get(aInfo.position);
 		switch (itemId) {
 			case 1: // about button
-				Intent intent = new Intent(this, Info.class);
+				Intent intent = new Intent(getActivity(), Info.class);
 				intent.putExtra("Info", c.getInfo());
 				intent.putExtra("Title", c.getName());
 				startActivity(intent);
@@ -342,20 +351,20 @@ public class MainActivity extends Activity implements LocationListener {
 	/*
 	 * Helper that returns MERT's hours
 	 */
-	private Map<Day, Hours> getScheduleMERT() {
+	private Map<ContactStatic.Day, ContactStatic.Hours> getScheduleMERT() {
 
 		// Map open times to closing times
-		Hours hours = new Hours(17, 7);
+		ContactStatic.Hours hours = new ContactStatic.Hours(17, 7);
 
 		// Map days of the week to hours
-		Map<Day, Hours> schedule = new HashMap<Day, Hours>();
-		schedule.put(Day.MONDAY, hours);
-		schedule.put(Day.TUESDAY, hours);
-		schedule.put(Day.WEDNESDAY, hours);
-		schedule.put(Day.THURSDAY, hours);
-		schedule.put(Day.FRIDAY, hours);
-		schedule.put(Day.SATURDAY, hours);
-		schedule.put(Day.SUNDAY, hours);
+		Map<ContactStatic.Day, ContactStatic.Hours> schedule = new HashMap<ContactStatic.Day, ContactStatic.Hours>();
+		schedule.put(ContactStatic.Day.MONDAY, hours);
+		schedule.put(ContactStatic.Day.TUESDAY, hours);
+		schedule.put(ContactStatic.Day.WEDNESDAY, hours);
+		schedule.put(ContactStatic.Day.THURSDAY, hours);
+		schedule.put(ContactStatic.Day.FRIDAY, hours);
+		schedule.put(ContactStatic.Day.SATURDAY, hours);
+		schedule.put(ContactStatic.Day.SUNDAY, hours);
 
 		return schedule;
 	}
@@ -363,46 +372,46 @@ public class MainActivity extends Activity implements LocationListener {
 	/*
 	 * Helper that returns SHS's hours
 	 */
-	private Map<Day, Hours> getScheduleSHS() {
+	private Map<ContactStatic.Day, ContactStatic.Hours> getScheduleSHS() {
 
 		// Map open times to closing times
-		Hours monWedHours = new Hours(8, 19.5);
-		Hours thursHours = new Hours(10, 17.5);
-		Hours friHours = new Hours(8, 17.5);
-		Hours satHours = new Hours(11, 16.5);
-		Hours sunHours = new Hours(-1, -1);
+		ContactStatic.Hours monWedHours = new ContactStatic.Hours(8, 19.5);
+		ContactStatic.Hours thursHours = new ContactStatic.Hours(10, 17.5);
+		ContactStatic.Hours friHours = new ContactStatic.Hours(8, 17.5);
+		ContactStatic.Hours satHours = new ContactStatic.Hours(11, 16.5);
+		ContactStatic.Hours sunHours = new ContactStatic.Hours(-1, -1);
 
 		// Map days of the week to hours
-		Map<Day, Hours> schedule = new HashMap<Day, Hours>();
-		schedule.put(Day.MONDAY, monWedHours);
-		schedule.put(Day.TUESDAY, monWedHours);
-		schedule.put(Day.WEDNESDAY, monWedHours);
-		schedule.put(Day.THURSDAY, thursHours);
-		schedule.put(Day.FRIDAY, friHours);
-		schedule.put(Day.SATURDAY, satHours);
-		schedule.put(Day.SUNDAY, sunHours);
+		Map<ContactStatic.Day, ContactStatic.Hours> schedule = new HashMap<ContactStatic.Day, ContactStatic.Hours>();
+		schedule.put(ContactStatic.Day.MONDAY, monWedHours);
+		schedule.put(ContactStatic.Day.TUESDAY, monWedHours);
+		schedule.put(ContactStatic.Day.WEDNESDAY, monWedHours);
+		schedule.put(ContactStatic.Day.THURSDAY, thursHours);
+		schedule.put(ContactStatic.Day.FRIDAY, friHours);
+		schedule.put(ContactStatic.Day.SATURDAY, satHours);
+		schedule.put(ContactStatic.Day.SUNDAY, sunHours);
 		return schedule;
 	}
 
 	/*
 	 * Helper that returns CAPS's hours
 	 */
-	private Map<Day, Hours> getScheduleCAPS() {
+	private Map<ContactStatic.Day, ContactStatic.Hours> getScheduleCAPS() {
 
 		// Map open times to closing times
-		Hours MTFHours = new Hours(9, 17);
-		Hours WThHours = new Hours(10, 19);
-		Hours weekendHours = new Hours(-1, -1);
+		ContactStatic.Hours MTFHours = new ContactStatic.Hours(9, 17);
+		ContactStatic.Hours WThHours = new ContactStatic.Hours(10, 19);
+		ContactStatic.Hours weekendHours = new ContactStatic.Hours(-1, -1);
 
 		// Map days of the week to hours
-		Map<Day, Hours> schedule = new HashMap<Day, Hours>();
-		schedule.put(Day.MONDAY, MTFHours);
-		schedule.put(Day.TUESDAY, MTFHours);
-		schedule.put(Day.WEDNESDAY, WThHours);
-		schedule.put(Day.THURSDAY, WThHours);
-		schedule.put(Day.FRIDAY, MTFHours);
-		schedule.put(Day.SATURDAY, weekendHours);
-		schedule.put(Day.SUNDAY, weekendHours);
+		Map<ContactStatic.Day, ContactStatic.Hours> schedule = new HashMap<ContactStatic.Day, ContactStatic.Hours>();
+		schedule.put(ContactStatic.Day.MONDAY, MTFHours);
+		schedule.put(ContactStatic.Day.TUESDAY, MTFHours);
+		schedule.put(ContactStatic.Day.WEDNESDAY, WThHours);
+		schedule.put(ContactStatic.Day.THURSDAY, WThHours);
+		schedule.put(ContactStatic.Day.FRIDAY, MTFHours);
+		schedule.put(ContactStatic.Day.SATURDAY, weekendHours);
+		schedule.put(ContactStatic.Day.SUNDAY, weekendHours);
 
 		return schedule;
 	}
@@ -410,20 +419,20 @@ public class MainActivity extends Activity implements LocationListener {
 	/*
 	 * Helper that returns PennTransit's schedule
 	 */
-	private Map<Day, Hours> getSchedulePennTransit() {
+	private Map<ContactStatic.Day, ContactStatic.Hours> getSchedulePennTransit() {
 		// Map open times to closing times
-		Hours MTWHours = new Hours(18, 7);
-		Hours hours = new Hours(3, 7);
+		ContactStatic.Hours MTWHours = new ContactStatic.Hours(18, 7);
+		ContactStatic.Hours hours = new ContactStatic.Hours(3, 7);
 
 		// Map days of the week to hours
-		Map<Day, Hours> schedule = new HashMap<Day, Hours>();
-		schedule.put(Day.MONDAY, MTWHours);
-		schedule.put(Day.TUESDAY, MTWHours);
-		schedule.put(Day.WEDNESDAY, MTWHours);
-		schedule.put(Day.THURSDAY, hours);
-		schedule.put(Day.FRIDAY, hours);
-		schedule.put(Day.SATURDAY, hours);
-		schedule.put(Day.SUNDAY, hours);
+		Map<ContactStatic.Day, ContactStatic.Hours> schedule = new HashMap<ContactStatic.Day, ContactStatic.Hours>();
+		schedule.put(ContactStatic.Day.MONDAY, MTWHours);
+		schedule.put(ContactStatic.Day.TUESDAY, MTWHours);
+		schedule.put(ContactStatic.Day.WEDNESDAY, MTWHours);
+		schedule.put(ContactStatic.Day.THURSDAY, hours);
+		schedule.put(ContactStatic.Day.FRIDAY, hours);
+		schedule.put(ContactStatic.Day.SATURDAY, hours);
+		schedule.put(ContactStatic.Day.SUNDAY, hours);
 
 		return schedule;
 	}
@@ -433,7 +442,7 @@ public class MainActivity extends Activity implements LocationListener {
 	 * bottom of the view
 	 */
 	public void addContact(View view) {
-		final Dialog d = new Dialog(this);
+		final Dialog d = new Dialog(getActivity());
 		d.setContentView(R.layout.contacts_dialog);
 		d.setTitle("Add contact");
 		d.setCancelable(true);
@@ -470,7 +479,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 				// don't let user add unless they give a number
 				if (contactNum.isEmpty()) {
-					Toast.makeText(MainActivity.this,
+					Toast.makeText(getActivity(),
 							"Please fill in the contact number",
 							Toast.LENGTH_SHORT).show();
 				} else {
@@ -482,8 +491,8 @@ public class MainActivity extends Activity implements LocationListener {
 					c.setBitmapUri(selectedImageUri);
 					c.saveEventually();
 
-					MainActivity.this.contactList.add(c);
-					MainActivity.this.adapter.notifyDataSetChanged();
+					contactList.add(c);
+					adapter.notifyDataSetChanged();
 					d.dismiss();
 				}
 			}
@@ -496,10 +505,10 @@ public class MainActivity extends Activity implements LocationListener {
 	 * added contact.
 	 */
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		if (resultCode == RESULT_OK) {
+		if (resultCode == getActivity().RESULT_OK) {
 			Uri targetUri = data.getData();
 			try {
 				selectedImageUri = ContentUris.parseId(targetUri);
@@ -511,12 +520,14 @@ public class MainActivity extends Activity implements LocationListener {
 
 	// -------------------------Location Methods-------------------------
 
-	protected void onResume() {
+	@Override
+	public void onResume() {
 		super.onResume();
 		locationManager.requestLocationUpdates(provider, 1000, 1, this);
 	}
 
-	protected void onPause() {
+	@Override
+	public void onPause() {
 		super.onPause();
 		locationManager.removeUpdates(this);
 	}
@@ -529,7 +540,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 	@Override
 	public void onProviderDisabled(String location) {
-		Toast.makeText(this, "Disabled provider " + provider,
+		Toast.makeText(getActivity(), "Disabled provider " + provider,
 				Toast.LENGTH_SHORT).show();
 
 		// If the GPS is turned off, use the network data
@@ -545,7 +556,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 	@Override
 	public void onProviderEnabled(String location) {
-		Toast.makeText(this, "Enabled new provider " + provider,
+		Toast.makeText(getActivity(), "Enabled new provider " + provider,
 				Toast.LENGTH_SHORT).show();
 
 		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {

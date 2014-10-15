@@ -1,7 +1,7 @@
 package com.android.pennaed.contacts;
 
 /*
- * Class created to hold all string constants used in MainActivity.
+ * Class created to hold all string constants used in ContactsFragment.
  */
 public class StringConstants {
 	public static String DPSInfo = "The Division of Public Safety (DPS) is "

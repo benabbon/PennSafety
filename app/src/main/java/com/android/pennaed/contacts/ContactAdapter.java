@@ -16,7 +16,7 @@ import java.util.List;
 
 /*
  * ContactAdapter extends ArrayAdapter and is used to populate the ListView
- * in MainActivity
+ * in ContactsFragment
  */
 public class ContactAdapter extends ArrayAdapter<Contact> {
 	private List<Contact> contactList;

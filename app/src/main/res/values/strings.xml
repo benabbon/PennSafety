@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Penn AED</string>
+    <string name="app_name">Penn Safety</string>
     <string name="emergency_lc">Emergency</string>
     <string name="emergency_start_text">Click the following button if there is an emergency:</string>
     <string name="emergency_start_button">EMERGENCY</string>
@@ -33,7 +33,7 @@
     <string name="aed_insn_9">AED will voice prompt if shock is advised</string>
     <string name="aed_insn_10">Stand clear of patient if shock is advised</string>
     <string name="aed_insn_11">After shock AED will prompt users to continue CPR</string>
-    <string name="title_activity_emergency">Penn Emergency</string>
+    <string name="title_fragment_emergency_main">Penn Emergency</string>
     <string name="title_activity_numberofpeople">How many are you ?</string>
     <string name="title_activity_aedinstructions">AED Instructions</string>
     <string name="title_activity_call">Call for Help</string>
@@ -42,8 +42,10 @@
     <string name="title_activity_wait_for_help">Wait For Help</string>
     <string name="title_activity_aedmap">AED Locations</string>
     <string name="action_settings">Settings</string>
-    <string name="main_activity">Emergency Numbers</string>
+    <string name="title_fragment_contacts_main">Emergency Numbers</string>
     <string name="info_page">Organization Info</string>
     <string name="add_emergency_contact_button">Add Emergency Contact</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>

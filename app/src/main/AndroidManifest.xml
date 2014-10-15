@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="com.android.pennaed"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="1"
-    android:versionName="1.0">
+<manifest package="com.android.pennaed"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:versionCode="1"
+          android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -40,23 +39,12 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAXj5ihUfW_nHqbKmn_whNawRaCCp1D2vk"/>
-        <!--         Nabil API: AIzaSyAXj5ihUfW_nHqbKmn_whNawRaCCp1D2vk -->
+        <!-- Nabil API: AIzaSyAXj5ihUfW_nHqbKmn_whNawRaCCp1D2vk -->
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
 
-        <activity
-            android:name=".emergency.EmergencyActivity"
-            android:label="@string/title_activity_emergency"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
         <activity
             android:name=".emergency.NumberOfPeopleActivity"
             android:label="@string/title_activity_numberofpeople">
@@ -86,12 +74,17 @@
             android:label="@string/title_activity_aedmap">
         </activity>
         <activity
-            android:name="com.android.pennaed.contacts.MainActivity"
-            android:label="@string/main_activity">
+            android:name=".contacts.Info"
+            android:label="@string/info_page">
         </activity>
         <activity
-            android:name="com.android.pennaed.contacts.Info"
-            android:label="@string/info_page">
+            android:name=".MainNavigation"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
