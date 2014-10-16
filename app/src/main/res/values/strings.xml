@@ -47,5 +47,9 @@
     <string name="add_emergency_contact_button">Add Emergency Contact</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_fragment_walk_timer_main">Walk timer</string>
+    <string name="title_activity_walkTimer_map">Walk timer</string>
+    <string name="walk_timer_main_text">Click the following button to start a walk timer</string>
+    <string name="walk_timer_main_start_button">Start walking</string>
 
 </resources>

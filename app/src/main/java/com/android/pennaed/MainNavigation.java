@@ -9,6 +9,7 @@ import android.view.Menu;
 
 import com.android.pennaed.contacts.ContactsFragment;
 import com.android.pennaed.emergency.EmergencyFragment;
+import com.android.pennaed.walkTimer.WalkTimerFragment;
 
 
 public class MainNavigation extends Activity
@@ -43,14 +44,22 @@ public class MainNavigation extends Activity
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
-		if (position == 0) {
-			fragmentManager.beginTransaction()
-					.replace(R.id.container, new EmergencyFragment())
-					.commit();
-		} else if (position == 1) {
-			fragmentManager.beginTransaction()
-					.replace(R.id.container, new ContactsFragment())
-					.commit();
+		switch (position) {
+			case 0:
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new EmergencyFragment())
+						.commit();
+				break;
+			case 1:
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new ContactsFragment())
+						.commit();
+				break;
+			case 2:
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new WalkTimerFragment())
+						.commit();
+				break;
 		}
 	}
 
@@ -61,6 +70,9 @@ public class MainNavigation extends Activity
 				break;
 			case 2:
 				mTitle = getString(R.string.title_fragment_contacts_main);
+				break;
+			case 3:
+				mTitle = getString(R.string.title_fragment_walk_timer_main);
 				break;
 		}
 	}
