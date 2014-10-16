@@ -47,5 +47,7 @@
     <string name="add_emergency_contact_button">Add Emergency Contact</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_setup_contacts">SetupContacts</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

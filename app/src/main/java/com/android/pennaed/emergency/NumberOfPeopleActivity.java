@@ -17,16 +17,16 @@ public class NumberOfPeopleActivity extends Activity {
 
 	public void onClickOnePerson(View view) {
 		AppVars.getInstance().setOnlyOnePerson(true);
-		call();
+		goToNeedCPRActivity();
 	}
 
 	public void onClickMoreThanOnePerson(View view) {
 		AppVars.getInstance().setOnlyOnePerson(false);
-		call();
+		goToNeedCPRActivity();
 	}
 
-	public void call() {
-		Intent i = new Intent(this, CallActivity.class);
+	public void goToNeedCPRActivity() {
+		Intent i = new Intent(this, NeedCPRActivity.class);
 		startActivity(i);
 	}
 }

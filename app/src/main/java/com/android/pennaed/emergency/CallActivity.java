@@ -23,7 +23,7 @@ public class CallActivity extends Activity {
 	public void onResume() {
 		super.onResume();
 		if (madeTheCall == 1) {
-			needCPRActivity();
+			goToNumberOfPeopleActivity();
 		}
 		madeTheCall++;
 	}
@@ -34,8 +34,8 @@ public class CallActivity extends Activity {
 		startActivity(callIntent);
 	}
 
-	public void needCPRActivity() {
-		Intent i = new Intent(this, NeedCPRActivity.class);
+	public void goToNumberOfPeopleActivity() {
+		Intent i = new Intent(this, NumberOfPeopleActivity.class);
 		startActivity(i);
 	}
 
