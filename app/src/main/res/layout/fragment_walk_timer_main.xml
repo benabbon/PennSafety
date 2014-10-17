@@ -38,8 +38,7 @@
             android:singleLine="false"
             android:text="@string/manual_walk_timer_button"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:onClick="onManualTimerButtonClick"/>
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/dest_walk_timer_button"

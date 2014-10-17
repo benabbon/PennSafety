@@ -17,7 +17,9 @@ import com.android.pennaed.R;
 public class WalkTimerMapActivity extends Activity {
 
 	private CountDownTimer countDownTimer;
-	public enum CounterState {RUNNING,STOPPED}
+
+	public enum CounterState {RUNNING, STOPPED}
+
 	CounterState counterState;
 
 	@Override
@@ -26,7 +28,13 @@ public class WalkTimerMapActivity extends Activity {
 		setContentView(R.layout.walk_timer_activity_map);
 		WalkTimerMap map = new WalkTimerMap();
 		map.setMap(this);
-		setTimer(20000);
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			int value = Integer.parseInt(extras.getString("TIMER_VALUE"));
+			setTimer(value * 1000);
+		} else {
+			setTimer(20000);
+		}
 	}
 
 	private void setTimer(long countdownInMs) {
@@ -55,7 +63,7 @@ public class WalkTimerMapActivity extends Activity {
 	}
 
 	public void changeTimerButtonText(String text) {
-		if(counterState != CounterState.STOPPED) {
+		if (counterState != CounterState.STOPPED) {
 			Button walkTimerStartButton = (Button) findViewById(R.id.stop_timer_button);
 			walkTimerStartButton.setText(text);
 		}
