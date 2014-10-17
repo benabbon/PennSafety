@@ -27,7 +27,7 @@
             />
 
         <Button
-            android:id="@+id/walk_timer_main_button"
+            android:id="@+id/manual_walk_timer_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -36,7 +36,22 @@
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
             android:singleLine="false"
-            android:text="@string/walk_timer_main_start_button"
+            android:text="@string/manual_walk_timer_button"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:onClick="onManualTimerButtonClick"/>
+
+        <Button
+            android:id="@+id/dest_walk_timer_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center_vertical|center_horizontal|fill_vertical"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:singleLine="false"
+            android:text="@string/dest_walk_timer_button"
             android:textSize="25sp"
             android:textStyle="bold"/>
     </LinearLayout>

@@ -50,6 +50,9 @@
     <string name="title_fragment_walk_timer_main">Walk timer</string>
     <string name="title_activity_walkTimer_map">Walk timer</string>
     <string name="walk_timer_main_text">Click the following button to start a walk timer</string>
-    <string name="walk_timer_main_start_button">Start walking</string>
+    <string name="manual_walk_timer_button">Manual Walk Timer</string>
+    <string name="dest_walk_timer_button">Destination Timer</string>
+    <string name="manual_timer_title">Set Timer</string>
+    <string name="manual_timer_message">Set Manual Time</string>
 
 </resources>

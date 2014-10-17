@@ -17,6 +17,8 @@ import com.android.pennaed.R;
 public class WalkTimerMapActivity extends Activity {
 
 	private CountDownTimer countDownTimer;
+	public enum CounterState {RUNNING,STOPPED}
+	CounterState counterState;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,29 +30,35 @@ public class WalkTimerMapActivity extends Activity {
 	}
 
 	private void setTimer(long countdownInMs) {
+		counterState = CounterState.RUNNING;
 		countDownTimer = new CountDownTimer(countdownInMs, 1000) {
 
 			@Override
 			public void onFinish() {
 				Toast.makeText(getApplicationContext(), "End of timer", Toast.LENGTH_SHORT).show();
 				changeTimerButtonText("Timer ended");
+				counterState = CounterState.STOPPED;
 			}
 
 			@Override
 			public void onTick(long millisUntilFinished) {
-				changeTimerButtonText("" + Math.round(millisUntilFinished / 1000.0));
+				changeTimerButtonText("" + Math.round(millisUntilFinished / 1000));
 			}
+
 		}.start();
 	}
 
 	public void onClickStopTimer(View v) {
 		countDownTimer.cancel();
 		changeTimerButtonText("Timer stopped");
+		counterState = CounterState.STOPPED;
 	}
 
 	public void changeTimerButtonText(String text) {
-		Button walkTimerStartButton = (Button) findViewById(R.id.stop_timer_button);
-		walkTimerStartButton.setText(text);
+		if(counterState != CounterState.STOPPED) {
+			Button walkTimerStartButton = (Button) findViewById(R.id.stop_timer_button);
+			walkTimerStartButton.setText(text);
+		}
 	}
 
 }
