@@ -45,7 +45,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@android:color/holo_red_light"
+            android:background="@android:color/holo_orange_light"
             android:gravity="center_vertical|center_horizontal|fill_vertical"
             android:paddingBottom="15dp"
             android:paddingTop="15dp"

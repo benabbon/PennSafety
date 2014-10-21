@@ -26,6 +26,9 @@ public class WalkTimerFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_walk_timer_main, container,
 				false);
 		Button walkTimerStartButton = (Button) view.findViewById(R.id.manual_walk_timer_button);
+		Button walkTimerByDestinationStartButton = (Button) view.findViewById(R.id.dest_walk_timer_button);
+		walkTimerByDestinationStartButton.setOnClickListener(
+				DestinationTimer.getStartTimerByDesination(getActivity()));
 		walkTimerStartButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

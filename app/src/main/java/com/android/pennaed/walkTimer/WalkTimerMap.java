@@ -39,6 +39,15 @@ public class WalkTimerMap {
 		currentLatitude = location.getLatitude();
 		map.setMyLocationEnabled(true);
 		currentPosition = new LatLng(currentLatitude, currentLongitude);
-		map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 18));
+		map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 15));
+	}
+
+	protected void getTimerFromDestinationClick(WalkTimerMapActivity walkTimerMapActivity) {
+		map.setOnMapLongClickListener(
+				DestinationTimer.getOnMapDestinationClick(walkTimerMapActivity, currentPosition));
+	}
+
+	protected GoogleMap getMap() {
+		return map;
 	}
 }

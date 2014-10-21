@@ -49,10 +49,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_fragment_walk_timer_main">Walk timer</string>
     <string name="title_activity_walkTimer_map">Walk timer</string>
-    <string name="walk_timer_main_text">Click the following button to start a walk timer</string>
+    <string name="walk_timer_main_text">Choose how you want to set up your timer and start walking</string>
     <string name="manual_walk_timer_button">Manual Walk Timer</string>
     <string name="dest_walk_timer_button">Destination Timer</string>
     <string name="manual_timer_title">Set Timer</string>
     <string name="manual_timer_message">Set Manual Time</string>
+    <string name="destination_timer_instruction">To select your destination, long click its location on the map.</string>
+    <string name="destination_timer_instructions_title">How-to set your destination.</string>
 
 </resources>
