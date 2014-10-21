@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class WalkTimerFragment extends Fragment {
 				alert.setMessage(R.string.manual_timer_message);
 
 				final EditText timeInputField = new EditText(getActivity());
+				timeInputField.setInputType(InputType.TYPE_CLASS_NUMBER);
 				alert.setView(timeInputField);
 
 				alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
