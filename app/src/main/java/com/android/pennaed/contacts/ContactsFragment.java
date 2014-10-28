@@ -59,7 +59,6 @@ public class ContactsFragment extends Fragment implements LocationListener {
 	private SetupContacts setupContacts;
 
 	public ContactsFragment(){
-		setupContacts = new SetupContacts(contactList);
 	}
 
 	@Override
@@ -67,7 +66,7 @@ public class ContactsFragment extends Fragment implements LocationListener {
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_contacts_main, container,
 				false);
-//		initContacts();
+		setupContacts = new SetupContacts(contactList);
 		setupContacts.initContacts();
 		initLocation();
 		adapter = new ContactAdapter(contactList, getActivity());
