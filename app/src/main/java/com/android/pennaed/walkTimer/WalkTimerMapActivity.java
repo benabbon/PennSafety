@@ -22,14 +22,6 @@ public class WalkTimerMapActivity extends Activity {
 
 	private CountDownTimer countDownTimer;
 
-	public enum CounterState {RUNNING, STOPPED}
-
-	CounterState counterState;
-
-	public enum TimerType {DESTINATION, MANUAL}
-
-	TimerType timerType;
-
 	WalkTimerMap map;
 
 	@Override
