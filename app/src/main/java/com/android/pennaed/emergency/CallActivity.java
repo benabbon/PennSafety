@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-import com.android.pennaed.PennAEDFinals;
 import com.android.pennaed.R;
 
 public class CallActivity extends Activity {
@@ -17,14 +16,14 @@ public class CallActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_call);
+		setContentView(R.layout.emergency_activity_call);
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		if (madeTheCall == 1) {
-			needCPRActivity();
+			goToNumberOfPeopleActivity();
 		}
 		madeTheCall++;
 	}
@@ -35,8 +34,8 @@ public class CallActivity extends Activity {
 		startActivity(callIntent);
 	}
 
-	public void needCPRActivity() {
-		Intent i = new Intent(this, NeedCPRActivity.class);
+	public void goToNumberOfPeopleActivity() {
+		Intent i = new Intent(this, NumberOfPeopleActivity.class);
 		startActivity(i);
 	}
 

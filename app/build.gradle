@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MyPennSafetyKey'
+            keyPassword 'PennSafetyDebug'
+            storeFile file('PennSafety.jks')
+            storePassword 'PennSafetyDebug'
+        }
+    }
 
     compileSdkVersion 17
     buildToolsVersion "20.0.0"
@@ -13,6 +21,9 @@ android {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }

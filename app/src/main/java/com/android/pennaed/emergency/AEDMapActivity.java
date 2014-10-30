@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.pennaed.AED;
-import com.android.pennaed.AEDMap;
-import com.android.pennaed.AppVars;
 import com.android.pennaed.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
@@ -43,7 +40,7 @@ public class AEDMapActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_aedmap);
+		setContentView(R.layout.emergency_activity_aedmap);
 		aedMap = new AEDMap();
 		aedArrayList = AppVars.getInstance().getAEDArrayList();
 		aedMap.setMap(aedArrayList, this, markerClickListener);
