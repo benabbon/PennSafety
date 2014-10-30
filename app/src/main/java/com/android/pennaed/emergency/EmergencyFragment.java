@@ -25,7 +25,7 @@ public class EmergencyFragment extends Fragment {
 		startEmergencyButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getActivity(), NumberOfPeopleActivity.class);
+				Intent i = new Intent(getActivity(), CallActivity.class);
 				startActivity(i);
 			}
 		});
