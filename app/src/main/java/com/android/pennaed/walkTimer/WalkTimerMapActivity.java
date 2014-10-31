@@ -3,7 +3,6 @@ package com.android.pennaed.walkTimer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,7 +19,7 @@ import com.google.android.gms.maps.model.TileProvider;
 
 public class WalkTimerMapActivity extends Activity {
 
-	private CountDownTimer countDownTimer;
+	private CustomCountDownTimer countDownTimer;
 
 	WalkTimerMap map;
 
@@ -31,9 +30,13 @@ public class WalkTimerMapActivity extends Activity {
 		map = new WalkTimerMap();
 		map.setMap(this);
 		Bundle extras = getIntent().getExtras();
+
+		//create Timer
+		countDownTimer = new CustomCountDownTimer(this);
+
 		if (extras != null) {
 			if ("DESTINATION_BASED".equals(extras.getString("TIMER_TYPE"))) {
-				timerType = TimerType.DESTINATION;
+				countDownTimer.setType(CustomCountDownTimer.TimerType.DESTINATION);
 				map.getTimerFromDestinationClick(this);
 				AlertDialog.Builder alert = new AlertDialog.Builder(this);
 				alert.setTitle(R.string.destination_timer_instructions_title);
@@ -41,7 +44,7 @@ public class WalkTimerMapActivity extends Activity {
 				alert.setCancelable(true);
 				alert.show();
 			} else {
-				timerType = TimerType.MANUAL;
+				countDownTimer.setType(CustomCountDownTimer.TimerType.MANUAL);
 				int value = Integer.parseInt(extras.getString("TIMER_VALUE"));
 				setTimer(value * 1000);
 			}
@@ -51,40 +54,28 @@ public class WalkTimerMapActivity extends Activity {
 	}
 
 	protected void setTimer(long countdownInMs) {
-		counterState = CounterState.RUNNING;
-		countDownTimer = new CountDownTimer(countdownInMs, 1000) {
-
-			@Override
-			public void onFinish() {
-				Toast.makeText(getApplicationContext(), "End of timer", Toast.LENGTH_SHORT).show();
-				changeTimerButtonText("Timer ended");
-				counterState = CounterState.STOPPED;
-			}
-
-			@Override
-			public void onTick(long millisUntilFinished) {
-				long secs = millisUntilFinished / 1000;
-				changeTimerButtonText(secs / 60 + "m " + (secs % 60) + "s");
-			}
-
-		}.start();
-	}
-
-	public boolean isTimerOn() {
-		return counterState == CounterState.RUNNING;
+		if(countDownTimer == null) {
+				countDownTimer = new CustomCountDownTimer(this);
+		} else {
+			countDownTimer.stopTimer();
+		}
+		countDownTimer.startTimer(countdownInMs);
 	}
 
 	public void onClickStopTimer(View v) {
-		countDownTimer.cancel();
 		changeTimerButtonText("Timer stopped");
-		counterState = CounterState.STOPPED;
+		countDownTimer.stopTimer();
 	}
 
 	public void changeTimerButtonText(String text) {
-		if (counterState != CounterState.STOPPED) {
+		if (countDownTimer.isStopped()) {
 			Button walkTimerStartButton = (Button) findViewById(R.id.stop_timer_button);
 			walkTimerStartButton.setText(text);
 		}
+	}
+
+	public boolean isTimerOn() {
+		return countDownTimer.isRunning();
 	}
 
 }
