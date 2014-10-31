@@ -17,7 +17,6 @@ import java.util.Map;
 public class SetupContacts {
 
 	List<Contact> contactList;
-	ContactInformation ci;
 
 	public SetupContacts(List<Contact> contactList){
 		this.contactList = contactList;
