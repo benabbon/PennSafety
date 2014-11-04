@@ -57,6 +57,5 @@
     <string name="destination_timer_instruction">To select your destination, long click its location on the map.</string>
     <string name="destination_timer_instructions_title">How-to set your destination.</string>
     <string name="title_activity_setup_contacts">SetupContacts</string>
-    <string name="hello_world">Hello world!</string>
 
 </resources>
