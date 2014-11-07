@@ -15,7 +15,6 @@ import com.android.pennaed.emergency.EmergencyFragment;
 import com.android.pennaed.walkTimer.WalkTimerFragment;
 import com.android.pennaed.outOfReach.Notification;
 import com.android.pennaed.outOfReach.SettingsActivity;
->>>>>>> master
 
 
 public class MainNavigation extends Activity

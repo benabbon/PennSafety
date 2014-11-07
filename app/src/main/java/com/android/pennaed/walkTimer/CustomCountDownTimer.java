@@ -1,6 +1,7 @@
 package com.android.pennaed.walkTimer;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Toast;
 import android.os.CountDownTimer;
 

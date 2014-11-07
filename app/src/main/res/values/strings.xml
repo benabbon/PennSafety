@@ -53,7 +53,7 @@
     <string name="manual_walk_timer_button">Manual Walk Timer</string>
     <string name="dest_walk_timer_button">Destination Timer</string>
     <string name="manual_timer_title">Set Timer</string>
-    <string name="manual_timer_message">Set Manual Time</string>
+    <string name="manual_timer_message">Set Manual Time (In Seconds)</string>
     <string name="destination_timer_instruction">To select your destination, long click its location on the map.</string>
     <string name="destination_timer_instructions_title">How-to set your destination.</string>
     <string name="title_activity_setup_contacts">SetupContacts</string>

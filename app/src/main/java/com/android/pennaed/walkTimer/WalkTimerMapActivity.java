@@ -3,6 +3,7 @@ package com.android.pennaed.walkTimer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import com.android.pennaed.R;
 import com.google.android.gms.maps.model.Tile;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
+import android.util.Log;
 
 /**
  * walk timer map activity
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.model.TileProvider;
 public class WalkTimerMapActivity extends Activity {
 
 	private CustomCountDownTimer countDownTimer;
+	private static final String TAG = "WalkTimerMapActivity";
 
 	WalkTimerMap map;
 
@@ -68,7 +71,7 @@ public class WalkTimerMapActivity extends Activity {
 	}
 
 	public void changeTimerButtonText(String text) {
-		if (countDownTimer.isStopped()) {
+		if(countDownTimer.isRunning()) {
 			Button walkTimerStartButton = (Button) findViewById(R.id.stop_timer_button);
 			walkTimerStartButton.setText(text);
 		}
