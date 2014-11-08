@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +48,11 @@ public class LocationTrackFragment extends Fragment
 	LocationClient mLocationClient;
 	boolean mUpdatesRequested;
 
+	// Handle to SharedPreferences for this app
+	SharedPreferences mPrefs;
+
+	// Handle to a SharedPreferences editor
+	SharedPreferences.Editor mEditor;
 	// Define an object that holds accuracy and frequency parameters
 	LocationRequest mLocationRequest;
 
@@ -56,27 +62,6 @@ public class LocationTrackFragment extends Fragment
 		View view = inflater.inflate(R.layout.fragment_location_track, container,
 				false);
 
-		mLocationRequest = LocationRequest.create();
-		// Use high accuracy
-		mLocationRequest.setPriority(
-				LocationRequest.PRIORITY_HIGH_ACCURACY);
-		// Set the update interval to 5 seconds
-		mLocationRequest.setInterval(UPDATE_INTERVAL);
-		// Set the fastest update interval to 1 second
-		mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-
-		// Open the shared preferences
-		mPrefs = getSharedPreferences("SharedPreferences",
-				Context.MODE_PRIVATE);
-		// Get a SharedPreferences editor
-		mEditor = mPrefs.edit();
-        /*
-         * Create a new location client, using the enclosing class to
-         * handle callbacks.
-         */
-		mLocationClient = new LocationClient(getActivity(), this, this);
-		// Start with updates turned off
-		mUpdatesRequested = false;
 
 		return view;
 	}
@@ -90,7 +75,7 @@ public class LocationTrackFragment extends Fragment
              * The current Activity is the listener, so
              * the argument is "this".
              */
-			removeLocationUpdates(this);
+			mLocationClient.removeLocationUpdates(this);
 		}
         /*
          * After disconnect() is called, the client is
@@ -103,6 +88,8 @@ public class LocationTrackFragment extends Fragment
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
+		super.onCreate(savedInstanceState);
+
 		// Open the shared preferences
 		mPrefs = getActivity().getSharedPreferences("SharedPreferences",
 				Context.MODE_PRIVATE);
@@ -112,10 +99,19 @@ public class LocationTrackFragment extends Fragment
          * Create a new location client, using the enclosing class to
          * handle callbacks.
          */
-		mLocationClient = new LocationClient(this, this, this);
+		mLocationClient = new LocationClient(getActivity(), this, this);
 		// Start with updates turned off
 		mUpdatesRequested = false;
 
+		mLocationRequest = LocationRequest.create();
+		// Use high accuracy
+		mLocationRequest.setPriority(
+				LocationRequest.PRIORITY_HIGH_ACCURACY);
+		// Set the update interval to 5 seconds
+		mLocationRequest.setInterval(UPDATE_INTERVAL);
+		// Set the fastest update interval to 1 second
+		mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+		mLocationRequest.setSmallestDisplacement(0);
 	}
 
 	@Override
@@ -128,7 +124,7 @@ public class LocationTrackFragment extends Fragment
 
 	@Override
 	public void onStart() {
-
+		super.onStart();
 		mLocationClient.connect();
 	}
 
@@ -138,6 +134,7 @@ public class LocationTrackFragment extends Fragment
          * Get any previous setting for location updates
          * Gets "false" if an error occurs
          */
+		super.onResume();
 		if (mPrefs.contains("KEY_UPDATES_ON")) {
 			mUpdatesRequested =
 					mPrefs.getBoolean("KEY_UPDATES_ON", false);
