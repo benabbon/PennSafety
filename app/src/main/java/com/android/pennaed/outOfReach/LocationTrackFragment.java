@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.pennaed.R;
+import com.android.pennaed.contacts.PointInPolygon;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -46,7 +47,16 @@ public class LocationTrackFragment extends Fragment
 	private static final long FASTEST_INTERVAL =
 			MILLISECONDS_PER_SECOND * FASTEST_INTERVAL_IN_SECONDS;
 	LocationClient mLocationClient;
+	private PointInPolygon pointInPolygon;
 
+	// Set the valid location range for emergency organizations to:
+	// 43rd to 30th, market to baltimore
+	double[] lat_temp = {39.954844, 39.958002, 39.952491, 39.951472,
+			39.949449, 39.949523, 39.949869, 39.949260, 39.949663,
+			39.951571};
+	double[] lng_temp = {-75.183274, -75.208213, -75.209388, -75.209398,
+			-75.209291, -75.207167, -75.201309, -75.184550, -75.184057,
+			-75.182544};
 	// Handle to SharedPreferences for this app
 	SharedPreferences mPrefs;
 
@@ -88,7 +98,7 @@ public class LocationTrackFragment extends Fragment
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-
+		pointInPolygon = new PointInPolygon(lat_temp,lng_temp);
 		// Open the shared preferences
 		mPrefs = getActivity().getSharedPreferences("SharedPreferences",
 				Context.MODE_PRIVATE);
@@ -155,6 +165,10 @@ public class LocationTrackFragment extends Fragment
 				Double.toString(location.getLatitude()) + "," +
 				Double.toString(location.getLongitude());
 		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+		if (!pointInPolygon.coordinate_is_inside_polygon(location.getLatitude(),location.getLongitude())){
+			Toast.makeText(getActivity(), "sending notification", Toast.LENGTH_SHORT).show();
+			Notification.createOutOfReachNotification(getActivity());
+		}
 	}
 
 	/*
