@@ -103,7 +103,8 @@ public class NavigationDrawerFragment extends Fragment {
 				new String[]{
 						getString(R.string.title_fragment_emergency_main),
 						getString(R.string.title_fragment_contacts_main),
-						getString(R.string.title_fragment_walk_timer_main)
+						getString(R.string.title_fragment_walk_timer_main),
+						getString(R.string.title_fragment_instruciton_video)
 				}));
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 		return mDrawerListView;

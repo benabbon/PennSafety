@@ -10,11 +10,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.android.pennaed.InstructionVideo.InstructionVideo;
 import com.android.pennaed.contacts.ContactsFragment;
 import com.android.pennaed.emergency.EmergencyFragment;
-import com.android.pennaed.walkTimer.WalkTimerFragment;
-import com.android.pennaed.outOfReach.Notification;
 import com.android.pennaed.outOfReach.SettingsActivity;
+import com.android.pennaed.walkTimer.WalkTimerFragment;
 
 
 public class MainNavigation extends Activity
@@ -78,6 +78,10 @@ public class MainNavigation extends Activity
 						.replace(R.id.container, new WalkTimerFragment())
 						.commit();
 				break;
+			case 3:
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new InstructionVideo())
+						.commit();
 		}
 	}
 
@@ -91,6 +95,9 @@ public class MainNavigation extends Activity
 				break;
 			case 3:
 				mTitle = getString(R.string.title_fragment_walk_timer_main);
+				break;
+			case 4:
+				mTitle = getString(R.string.title_fragment_instruciton_video);
 				break;
 		}
 	}
