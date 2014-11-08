@@ -46,7 +46,6 @@ public class LocationTrackFragment extends Fragment
 	private static final long FASTEST_INTERVAL =
 			MILLISECONDS_PER_SECOND * FASTEST_INTERVAL_IN_SECONDS;
 	LocationClient mLocationClient;
-	boolean mUpdatesRequested;
 
 	// Handle to SharedPreferences for this app
 	SharedPreferences mPrefs;
@@ -100,8 +99,6 @@ public class LocationTrackFragment extends Fragment
          * handle callbacks.
          */
 		mLocationClient = new LocationClient(getActivity(), this, this);
-		// Start with updates turned off
-		mUpdatesRequested = false;
 
 		mLocationRequest = LocationRequest.create();
 		// Use high accuracy
@@ -112,13 +109,12 @@ public class LocationTrackFragment extends Fragment
 		// Set the fastest update interval to 1 second
 		mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
 		mLocationRequest.setSmallestDisplacement(0);
+
 	}
 
 	@Override
 	public void onPause() {
 		// Save the current setting for updates
-		mEditor.putBoolean("KEY_UPDATES_ON", mUpdatesRequested);
-		mEditor.commit();
 		super.onPause();
 	}
 
@@ -135,15 +131,6 @@ public class LocationTrackFragment extends Fragment
          * Gets "false" if an error occurs
          */
 		super.onResume();
-		if (mPrefs.contains("KEY_UPDATES_ON")) {
-			mUpdatesRequested =
-					mPrefs.getBoolean("KEY_UPDATES_ON", false);
-
-			// Otherwise, turn off location updates
-		} else {
-			mEditor.putBoolean("KEY_UPDATES_ON", false);
-			mEditor.commit();
-		}
 	}
 
 	/*
@@ -156,9 +143,8 @@ public class LocationTrackFragment extends Fragment
 		// Display the connection status
 		Toast.makeText(getActivity(), "Connected", Toast.LENGTH_SHORT).show();
 		// If already requested, start periodic updates
-		if (mUpdatesRequested) {
-			mLocationClient.requestLocationUpdates(mLocationRequest, this);
-		}
+
+		mLocationClient.requestLocationUpdates(mLocationRequest, this);
 	}
 
 	// Define the callback method that receives location updates
