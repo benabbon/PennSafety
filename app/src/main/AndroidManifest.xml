@@ -92,6 +92,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".outOfReach.SettingsActivity"
+            android:label="@string/title_activity_settings">
+        </activity>
+        <activity
             android:name=".walkTimer.WalkTimerMapActivity"
             android:label="@string/title_activity_walkTimer_map"
             android:screenOrientation="portrait">
