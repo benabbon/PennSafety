@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import com.android.pennaed.InstructionVideo.InstructionVideo;
 import com.android.pennaed.contacts.ContactsFragment;
 import com.android.pennaed.emergency.EmergencyFragment;
+import com.android.pennaed.outOfReach.LocationTrackFragment;
+import com.android.pennaed.walkTimer.WalkTimerFragment;
+import com.android.pennaed.outOfReach.Notification;
 import com.android.pennaed.outOfReach.SettingsActivity;
 import com.android.pennaed.walkTimer.WalkTimerFragment;
 
@@ -82,6 +85,12 @@ public class MainNavigation extends Activity
 				fragmentManager.beginTransaction()
 						.replace(R.id.container, new InstructionVideo())
 						.commit();
+				break;
+			case 4:
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new LocationTrackFragment())
+						.commit();
+				break;
 		}
 	}
 
@@ -98,6 +107,9 @@ public class MainNavigation extends Activity
 				break;
 			case 4:
 				mTitle = getString(R.string.title_fragment_instruciton_video);
+				break;
+			case 5:
+				mTitle = getString(R.string.title_fragment_location_track);
 				break;
 		}
 	}

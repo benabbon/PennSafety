@@ -58,5 +58,6 @@
     <string name="destination_timer_instructions_title">How-to set your destination.</string>
     <string name="title_activity_setup_contacts">SetupContacts</string>
     <string name="title_fragment_instruciton_video">Instruction Video</string>
+    <string name="title_fragment_location_track">Location Track</string>
 
 </resources>

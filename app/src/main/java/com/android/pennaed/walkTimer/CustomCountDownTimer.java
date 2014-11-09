@@ -8,9 +8,10 @@ import android.os.CountDownTimer;
 /**
  * Created by sruthi on 10/28/14.
  */
-public class CustomCountDownTimer{
+public class CustomCountDownTimer {
 
 	public enum CounterState {RUNNING, STOPPED}
+
 	public enum TimerType {DESTINATION, MANUAL}
 
 	private android.os.CountDownTimer countDownTimer;
@@ -53,7 +54,7 @@ public class CustomCountDownTimer{
 	}
 
 	public void stopTimer() {
-		if(counterState == CounterState.STOPPED) {
+		if (counterState == CounterState.STOPPED) {
 			return;
 		}
 		counterState = CounterState.STOPPED;
@@ -61,11 +62,11 @@ public class CustomCountDownTimer{
 	}
 
 	public boolean isStopped() {
-		return counterState==CounterState.STOPPED;
+		return counterState == CounterState.STOPPED;
 	}
 
 	public boolean isRunning() {
-		return counterState==CounterState.RUNNING;
+		return counterState == CounterState.RUNNING;
 	}
 
 	public void setType(TimerType timerType) {

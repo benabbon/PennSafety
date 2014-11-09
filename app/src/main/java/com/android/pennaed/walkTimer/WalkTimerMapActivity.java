@@ -12,6 +12,7 @@ import com.android.pennaed.R;
 import com.google.android.gms.maps.model.Tile;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
+
 import android.util.Log;
 
 /**
@@ -57,8 +58,8 @@ public class WalkTimerMapActivity extends Activity {
 	}
 
 	protected void setTimer(long countdownInMs) {
-		if(countDownTimer == null) {
-				countDownTimer = new CustomCountDownTimer(this);
+		if (countDownTimer == null) {
+			countDownTimer = new CustomCountDownTimer(this);
 		} else {
 			countDownTimer.stopTimer();
 		}
@@ -71,7 +72,7 @@ public class WalkTimerMapActivity extends Activity {
 	}
 
 	public void changeTimerButtonText(String text) {
-		if(countDownTimer.isRunning()) {
+		if (countDownTimer.isRunning()) {
 			Button walkTimerStartButton = (Button) findViewById(R.id.stop_timer_button);
 			walkTimerStartButton.setText(text);
 		}
