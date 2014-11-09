@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -154,7 +155,10 @@ public class LocationTrackFragment extends Fragment
 		Toast.makeText(getActivity(), "Connected", Toast.LENGTH_SHORT).show();
 		// If already requested, start periodic updates
 
-		mLocationClient.requestLocationUpdates(mLocationRequest, this);
+		//mLocationClient.requestLocationUpdates(mLocationRequest, this);
+		Intent intent = new Intent(getActivity(), LocationReceiver.class);
+		PendingIntent locationIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 14872, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+		mLocationClient.requestLocationUpdates(mLocationRequest, locationIntent);
 	}
 
 	// Define the callback method that receives location updates

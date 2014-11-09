@@ -91,6 +91,8 @@
             android:label="@string/title_activity_walkTimer_map"
             android:screenOrientation="portrait">
         </activity>
+        <receiver android:name=".outOfReach.LocationReceiver">
+        </receiver>
     </application>
 
 </manifest>
