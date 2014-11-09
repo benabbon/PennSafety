@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +23,6 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationListener;
 
 /**
  * Created by chaitalisg on 11/8/14.
@@ -32,8 +30,7 @@ import com.google.android.gms.location.LocationListener;
 public class LocationTrackFragment extends Fragment
 		implements
 		GooglePlayServicesClient.ConnectionCallbacks,
-		GooglePlayServicesClient.OnConnectionFailedListener,
-		LocationListener {
+		GooglePlayServicesClient.OnConnectionFailedListener {
 
 	// Milliseconds per second
 	private static final int MILLISECONDS_PER_SECOND = 1000;
@@ -77,35 +74,16 @@ public class LocationTrackFragment extends Fragment
 	}
 
 	@Override
-	public void onStop() {
-		// If the client is connected
-		if (mLocationClient.isConnected()) {
-            /*
-             * Remove location updates for a listener.
-             * The current Activity is the listener, so
-             * the argument is "this".
-             */
-			mLocationClient.removeLocationUpdates(this);
-		}
-        /*
-         * After disconnect() is called, the client is
-         * considered "dead".
-         */
-		mLocationClient.disconnect();
-		super.onStop();
-	}
-
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		pointInPolygon = new PointInPolygon(lat_temp,lng_temp);
+		pointInPolygon = new PointInPolygon(lat_temp, lng_temp);
 		// Open the shared preferences
 		mPrefs = getActivity().getSharedPreferences("SharedPreferences",
 				Context.MODE_PRIVATE);
 		// Get a SharedPreferences editor
 		mEditor = mPrefs.edit();
-        /*
+	    /*
          * Create a new location client, using the enclosing class to
          * handle callbacks.
          */
@@ -161,20 +139,6 @@ public class LocationTrackFragment extends Fragment
 		mLocationClient.requestLocationUpdates(mLocationRequest, locationIntent);
 	}
 
-	// Define the callback method that receives location updates
-	@Override
-	public void onLocationChanged(Location location) {
-		// Report to the UI that the location was updated
-		String msg = "Updated Location: " +
-				Double.toString(location.getLatitude()) + "," +
-				Double.toString(location.getLongitude());
-		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-		if (!pointInPolygon.coordinate_is_inside_polygon(location.getLatitude(),location.getLongitude())){
-			Toast.makeText(getActivity(), "sending notification", Toast.LENGTH_SHORT).show();
-			Notification.createOutOfReachNotification(getActivity());
-		}
-	}
-
 	/*
 	 * Called by Location Services if the connection to the
 	 * location client drops because of an error.
@@ -185,6 +149,7 @@ public class LocationTrackFragment extends Fragment
 		Toast.makeText(getActivity(), "Disconnected. Please re-connect.",
 				Toast.LENGTH_SHORT).show();
 	}
+
 	/*
 	 * Called by Location Services if the attempt to
 	 * Location Services fails.
@@ -234,15 +199,18 @@ public class LocationTrackFragment extends Fragment
 	public static class ErrorDialogFragment extends DialogFragment {
 		// Global field to contain the error dialog
 		private Dialog mDialog;
+
 		// Default constructor. Sets the dialog field to null
 		public ErrorDialogFragment() {
 			super();
 			mDialog = null;
 		}
+
 		// Set the dialog to display
 		public void setDialog(Dialog dialog) {
 			mDialog = dialog;
 		}
+
 		// Return a Dialog to the DialogFragment.
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -260,13 +228,13 @@ public class LocationTrackFragment extends Fragment
 		// Decide what to do based on the original request code
 		switch (requestCode) {
 
-			case CONNECTION_FAILURE_RESOLUTION_REQUEST :
+			case CONNECTION_FAILURE_RESOLUTION_REQUEST:
             /*
              * If the result code is Activity.RESULT_OK, try
              * to connect again
              */
 				switch (resultCode) {
-					case Activity.RESULT_OK :
+					case Activity.RESULT_OK:
                     /*
                      * Try the request again
                      */
