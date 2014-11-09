@@ -22,7 +22,7 @@ public class LocationReceiver extends BroadcastReceiver {
 			-75.209291, -75.207167, -75.201309, -75.184550, -75.184057,
 			-75.182544};
 	private static String TAG = "LocationBroadcastReceiver";
-	private static boolean alreadyNotified = false;
+	private static boolean showNotification = true;
 
 	private PointInPolygon pointInPolygon;
 
@@ -33,16 +33,23 @@ public class LocationReceiver extends BroadcastReceiver {
 				Double.toString(location.getLatitude()) + "," +
 				Double.toString(location.getLongitude());
 		//Toast.makeText(context, "Called location receiver", Toast.LENGTH_SHORT).show();
-		Log.d(TAG, "Receiver called with: " + location.getLatitude() + " " + location.getLongitude() + " WITH already inside: " + alreadyNotified);
+		Log.d(TAG, "Receiver called with: " + location.getLatitude() + " " + location.getLongitude() + " WITH already inside: " + showNotification);
 		pointInPolygon = new PointInPolygon(lat_temp, lng_temp);
 		if (!pointInPolygon.coordinate_is_inside_polygon(location.getLatitude(), location.getLongitude())) {
-			if (!alreadyNotified) {
-				alreadyNotified = true;
+			if ( showNotification ) {
+				showNotification = false;
 				Notification.createOutOfReachNotification(context);
 			}
 		} else {
-			alreadyNotified = false;
+			showNotification = true;
 		}
 	}
 
+	public static void enableNotifications() {
+		showNotification = true;
+	}
+
+	public static void disableNotifications() {
+		showNotification = false;
+	}
 }

@@ -3,8 +3,11 @@ package com.android.pennaed.outOfReach;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
@@ -69,6 +72,18 @@ public class SettingsActivity extends PreferenceActivity {
 		fakeHeader.setTitle(R.string.pref_header_notifications);
 		getPreferenceScreen().addPreference(fakeHeader);
 		addPreferencesFromResource(R.xml.pref_notification);
+		final CheckBoxPreference checkBoxPreference = (CheckBoxPreference)getPreferenceManager().findPreference("allow_notifications");
+		checkBoxPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				if(checkBoxPreference.isEnabled()) {
+					LocationReceiver.enableNotifications();
+				} else {
+					LocationReceiver.disableNotifications();
+				}
+				return true;
+			}
+		});
 	}
 
 	/**
@@ -114,6 +129,18 @@ public class SettingsActivity extends PreferenceActivity {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_notification);
+			final CheckBoxPreference checkBoxPreference = (CheckBoxPreference)getPreferenceManager().findPreference("allow_notifications");
+			checkBoxPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+				@Override
+				public boolean onPreferenceChange(Preference preference, Object newValue) {
+					if(checkBoxPreference.isEnabled()) {
+						LocationReceiver.enableNotifications();
+					} else {
+						LocationReceiver.disableNotifications();
+					}
+					return true;
+				}
+			});
 		}
 	}
 }
