@@ -1,11 +1,9 @@
 package com.android.pennaed.contacts;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,7 +13,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -28,6 +25,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.pennaed.R;
+import com.android.pennaed.emergency.AppVars;
+import com.android.pennaed.emergency.PennAEDFinals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +57,7 @@ public class ContactsFragment extends Fragment implements LocationListener {
 	private boolean networkEnabled;
 	private SetupContacts setupContacts;
 
-	public ContactsFragment(){
+	public ContactsFragment() {
 	}
 
 	@Override
@@ -90,53 +89,7 @@ public class ContactsFragment extends Fragment implements LocationListener {
 	}
 
 	private void initLocation() {
-		LocationManager service = (LocationManager) getActivity().
-				getSystemService(getActivity().LOCATION_SERVICE);
-		gpsEnabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
-		networkEnabled = service
-				.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-		// Check if enabled, if not send to the GPS settings. Dialogue box
-		// appears if app is opened for first time
-
-		if (!gpsEnabled) {
-
-			AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-
-			// Setting Dialog Title
-			alertDialog.setTitle("GPS Disabled...");
-
-			// Setting Dialog Message
-			alertDialog.setMessage("This app can use the GPS to tell if you "
-					+ "are in the range of area-limited services. "
-					+ "Do you want to go to GPS settings? "
-					+ "(Else network information will be used)");
-
-			// Setting Positive "Yes" Button
-			alertDialog.setPositiveButton("yes",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-
-							// Activity transfer to wifi settings
-							Intent intent = new Intent(
-									Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-							startActivity(intent);
-						}
-					});
-
-			// Setting Negative "NO" Button
-			alertDialog.setNegativeButton("no",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-
-							dialog.cancel();
-						}
-					});
-
-			// Showing Alert Message
-			alertDialog.show();
-		}
-
+		AppVars.getInstance().enableLocation(getActivity());
 		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
 		// Define the criteria of how to select the location provider. This uses
@@ -149,8 +102,8 @@ public class ContactsFragment extends Fragment implements LocationListener {
 			System.out.println("Provider " + provider + "has been selected.");
 			onLocationChanged(location);
 		} else {
-			latitude = 0;
-			longitude = 0;
+			latitude = PennAEDFinals.DEFAULT_POSITION.latitude;
+			longitude = PennAEDFinals.DEFAULT_POSITION.longitude;
 		}
 	}
 
@@ -349,8 +302,13 @@ public class ContactsFragment extends Fragment implements LocationListener {
 
 	@Override
 	public void onProviderDisabled(String location) {
-		Toast.makeText(getActivity(), "Disabled provider " + provider,
-				Toast.LENGTH_SHORT).show();
+		// We test if the activity is not null, because when the toast
+		// is about to appear and we change the fragment, the method returns null
+		// and we end up crashing the app.
+		if (getActivity() != null) {
+			Toast.makeText(getActivity(), "Disabled provider " + provider,
+					Toast.LENGTH_SHORT).show();
+		}
 
 		// If the GPS is turned off, use the network data
 		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -365,8 +323,10 @@ public class ContactsFragment extends Fragment implements LocationListener {
 
 	@Override
 	public void onProviderEnabled(String location) {
-		Toast.makeText(getActivity(), "Enabled new provider " + provider,
-				Toast.LENGTH_SHORT).show();
+		if (getActivity() != null) {
+			Toast.makeText(getActivity(), "Enabled new provider " + provider,
+					Toast.LENGTH_SHORT).show();
+		}
 
 		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			locationManager.requestLocationUpdates(

@@ -60,5 +60,11 @@
     <string name="title_fragment_instruciton_video">Instruction Video</string>
     <string name="title_fragment_location_track">Location Track</string>
     <string name="location_track_main_text">Location tracking has been started. This feature will let you know when you go out of the PennSafety service zone. Go to Settings to enable/disable notifications</string>
+    <string name="walk_timer_map_unavailable">Service unavailable</string>
+    <string name="walk_timer_map_unavailable_details">You can\'t use this service without a location tracker. Please enable your location service and try again.</string>
+    <string name="gps_enable_alert_title">GPS Disabled...</string>
+    <string name="gps_enable_alert_details">This app can use GPS to tell if you are in the range of area-limited services, and to use your location to provide you with the best services possible. Do you want to go to GPS settings? (Else network information will be used)"</string>
+    <string name="main_navigation_exit_title">Exit application</string>
+    <string name="main_navigation_exit_details">Are you sure you want to exit the application ?</string>
 
 </resources>

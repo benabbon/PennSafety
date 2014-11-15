@@ -1,7 +1,14 @@
 package com.android.pennaed.emergency;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.LocationManager;
+import android.provider.Settings;
 import android.util.Log;
 
+import com.android.pennaed.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -28,7 +35,7 @@ public class AppVars {
 	//cpr needed
 	private boolean cprNeeded;
 
-	private ArrayList<AED> aedArrayList;
+	private ArrayList<AED> aedArrayList = null;
 
 	private HashMap<Integer, AED> aedIntegerMap;
 
@@ -74,6 +81,9 @@ public class AppVars {
 	}
 
 	public ArrayList<AED> getAEDArrayList() {
+		if (aedArrayList == null) {
+			setAEDArrayList();
+		}
 		return aedArrayList;
 	}
 
@@ -112,6 +122,55 @@ public class AppVars {
 
 	public String getAedId(String markerId) {
 		return markerIdToAedId.get(markerId);
+	}
+
+	public void enableLocation(final Activity activity) {
+		if (activity == null) {
+			return;
+		}
+		LocationManager service = (LocationManager) activity.
+				getSystemService(activity.LOCATION_SERVICE);
+		boolean gpsEnabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		boolean networkEnabled = service
+				.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+		// Check if enabled, if not send to the GPS settings. Dialogue box
+		// appears if app is opened for first time
+
+		if (!gpsEnabled) {
+
+			AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+
+			// Setting Dialog Title
+			alertDialog.setTitle(activity.getString(R.string.gps_enable_alert_title));
+
+			// Setting Dialog Message
+			alertDialog.setMessage(activity.getString(R.string.gps_enable_alert_details));
+
+			// Setting Positive "Yes" Button
+			alertDialog.setPositiveButton("yes",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+
+							// Activity transfer to wifi settings
+							Intent intent = new Intent(
+									Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+							activity.startActivity(intent);
+						}
+					});
+
+			// Setting Negative "NO" Button
+			alertDialog.setNegativeButton("no",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+
+							dialog.cancel();
+						}
+					});
+
+			// Showing Alert Message
+			alertDialog.show();
+		}
 	}
 
 }

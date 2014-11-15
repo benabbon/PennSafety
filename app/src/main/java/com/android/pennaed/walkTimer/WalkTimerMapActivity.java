@@ -2,18 +2,12 @@ package com.android.pennaed.walkTimer;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.android.pennaed.R;
-import com.google.android.gms.maps.model.Tile;
-import com.google.android.gms.maps.model.TileOverlayOptions;
-import com.google.android.gms.maps.model.TileProvider;
-
-import android.util.Log;
 
 /**
  * walk timer map activity
@@ -22,38 +16,59 @@ import android.util.Log;
 
 public class WalkTimerMapActivity extends Activity {
 
-	private CustomCountDownTimer countDownTimer;
 	private static final String TAG = "WalkTimerMapActivity";
-
 	WalkTimerMap map;
+	private CustomCountDownTimer countDownTimer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.walk_timer_activity_map);
 		map = new WalkTimerMap();
-		map.setMap(this);
-		Bundle extras = getIntent().getExtras();
-
-		//create Timer
-		countDownTimer = new CustomCountDownTimer(this);
-
-		if (extras != null) {
-			if ("DESTINATION_BASED".equals(extras.getString("TIMER_TYPE"))) {
-				countDownTimer.setType(CustomCountDownTimer.TimerType.DESTINATION);
-				map.getTimerFromDestinationClick(this);
-				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setTitle(R.string.destination_timer_instructions_title);
-				alert.setMessage(R.string.destination_timer_instruction);
-				alert.setCancelable(true);
-				alert.show();
-			} else {
-				countDownTimer.setType(CustomCountDownTimer.TimerType.MANUAL);
-				int value = Integer.parseInt(extras.getString("TIMER_VALUE"));
-				setTimer(value * 1000);
-			}
+		if (!map.setMap(this)) {
+			// In case the location provider is not available, we don't allow
+			// the user to view the map
+			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+			alert.setTitle(R.string.walk_timer_map_unavailable);
+			alert.setMessage(R.string.walk_timer_map_unavailable_details);
+			alert.setPositiveButton("Ok",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							onBackPressed();
+						}
+					});
+			alert.setCancelable(false);
+			alert.show();
 		} else {
-			setTimer(20000);
+			Bundle extras = getIntent().getExtras();
+
+			//create Timer
+			countDownTimer = new CustomCountDownTimer(this);
+
+			if (extras != null) {
+				if ("DESTINATION_BASED".equals(extras.getString("TIMER_TYPE"))) {
+					countDownTimer.setType(CustomCountDownTimer.TimerType.DESTINATION);
+					map.getTimerFromDestinationClick(this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(this);
+					alert.setTitle(R.string.destination_timer_instructions_title);
+					alert.setMessage(R.string.destination_timer_instruction);
+					alert.setPositiveButton("Ok",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									dialog.cancel();
+								}
+							});
+					alert.setCancelable(true);
+					alert.show();
+				} else {
+					countDownTimer.setType(CustomCountDownTimer.TimerType.MANUAL);
+					int value = Integer.parseInt(extras.getString("TIMER_VALUE"));
+					setTimer(value * 1000);
+				}
+			} else {
+				setTimer(20000);
+			}
 		}
 	}
 

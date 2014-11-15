@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.pennaed.R;
+import com.android.pennaed.emergency.AppVars;
 
 /**
  * Created by nabilbenabbou1 on 10/15/14.
@@ -60,6 +61,12 @@ public class WalkTimerFragment extends Fragment {
 			}
 		});
 		return view;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		AppVars.getInstance().enableLocation(getActivity());
 	}
 
 }

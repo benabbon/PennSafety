@@ -22,24 +22,26 @@ public class WalkTimerMap {
 	private double currentLongitude;
 	private LatLng currentPosition;
 
-	public void setMap(Activity parentActivity) {
+	public boolean setMap(Activity parentActivity) {
 		map = ((MapFragment) parentActivity.getFragmentManager().findFragmentById(R.id.walkTimerMap)).getMap();
 		if (map == null) {
-			return;
+			return false;
 		}
 		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		LocationManager lm = (LocationManager) parentActivity.getSystemService(Context.LOCATION_SERVICE);
-		Location location = null;
-		if (lm.getLastKnownLocation(LocationManager.GPS_PROVIDER) == null) {
+		Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		if (location == null) {
 			location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		} else {
-			location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		}
+		if (location == null) {
+			return false;
 		}
 		currentLongitude = location.getLongitude();
 		currentLatitude = location.getLatitude();
-		map.setMyLocationEnabled(true);
 		currentPosition = new LatLng(currentLatitude, currentLongitude);
+		map.setMyLocationEnabled(true);
 		map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 15));
+		return true;
 	}
 
 	protected void getTimerFromDestinationClick(WalkTimerMapActivity walkTimerMapActivity) {
