@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +31,10 @@ public class LocationTrackFragment extends Fragment
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener {
 
-	// Milliseconds per second
-	private static final int MILLISECONDS_PER_SECOND = 1000;
 	// Update frequency in seconds
 	public static final int UPDATE_INTERVAL_IN_SECONDS = 5;
+	// Milliseconds per second
+	private static final int MILLISECONDS_PER_SECOND = 1000;
 	// Update frequency in milliseconds
 	private static final long UPDATE_INTERVAL =
 			MILLISECONDS_PER_SECOND * UPDATE_INTERVAL_IN_SECONDS;
@@ -44,9 +43,13 @@ public class LocationTrackFragment extends Fragment
 	// A fast frequency ceiling in milliseconds
 	private static final long FASTEST_INTERVAL =
 			MILLISECONDS_PER_SECOND * FASTEST_INTERVAL_IN_SECONDS;
+	// Global constants
+	/* Define a request code to send to Google Play services
+	   This code is returned in Activity.onActivityResult
+     */
+	private final static int
+			CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	LocationClient mLocationClient;
-	private PointInPolygon pointInPolygon;
-
 	// Set the valid location range for emergency organizations to:
 	// 43rd to 30th, market to baltimore
 	double[] lat_temp = {39.954844, 39.958002, 39.952491, 39.951472,
@@ -62,6 +65,7 @@ public class LocationTrackFragment extends Fragment
 	SharedPreferences.Editor mEditor;
 	// Define an object that holds accuracy and frequency parameters
 	LocationRequest mLocationRequest;
+	private PointInPolygon pointInPolygon;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,7 +88,7 @@ public class LocationTrackFragment extends Fragment
 		// Get a SharedPreferences editor
 		mEditor = mPrefs.edit();
 		/*
-         * Create a new location client, using the enclosing class to
+		 * Create a new location client, using the enclosing class to
          * handle callbacks.
          */
 		mLocationClient = new LocationClient(getActivity(), this, this);
@@ -115,8 +119,8 @@ public class LocationTrackFragment extends Fragment
 
 	@Override
 	public void onResume() {
-        /*
-         * Get any previous setting for location updates
+	    /*
+	     * Get any previous setting for location updates
          * Gets "false" if an error occurs
          */
 		super.onResume();
@@ -156,8 +160,8 @@ public class LocationTrackFragment extends Fragment
 	 */
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
-        /*
-         * Google Play services can resolve some errors it detects.
+	    /*
+	     * Google Play services can resolve some errors it detects.
          * If the error has a resolution, try sending an Intent to
          * start a Google Play services activity that can resolve
          * error.
@@ -168,7 +172,7 @@ public class LocationTrackFragment extends Fragment
 				connectionResult.startResolutionForResult(
 						getActivity(),
 						CONNECTION_FAILURE_RESOLUTION_REQUEST);
-                /*
+		        /*
                 * Thrown if Google Play services canceled the original
                 * PendingIntent
                 */
@@ -184,37 +188,6 @@ public class LocationTrackFragment extends Fragment
 			//Magic Code !!!! :O 1001 = REQUEST_CODE_RECOVER_PLAY_SERVICES
 			GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), getActivity(),
 					1001).show();
-		}
-	}
-
-	// Global constants
-    /*
-     * Define a request code to send to Google Play services
-     * This code is returned in Activity.onActivityResult
-     */
-	private final static int
-			CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
-
-	// Define a DialogFragment that displays the error dialog
-	public static class ErrorDialogFragment extends DialogFragment {
-		// Global field to contain the error dialog
-		private Dialog mDialog;
-
-		// Default constructor. Sets the dialog field to null
-		public ErrorDialogFragment() {
-			super();
-			mDialog = null;
-		}
-
-		// Set the dialog to display
-		public void setDialog(Dialog dialog) {
-			mDialog = dialog;
-		}
-
-		// Return a Dialog to the DialogFragment.
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			return mDialog;
 		}
 	}
 
@@ -256,5 +229,28 @@ public class LocationTrackFragment extends Fragment
 			return false;
 		}
 		return true;
+	}
+
+	// Define a DialogFragment that displays the error dialog
+	public static class ErrorDialogFragment extends DialogFragment {
+		// Global field to contain the error dialog
+		private Dialog mDialog;
+
+		// Default constructor. Sets the dialog field to null
+		public ErrorDialogFragment() {
+			super();
+			mDialog = null;
+		}
+
+		// Set the dialog to display
+		public void setDialog(Dialog dialog) {
+			mDialog = dialog;
+		}
+
+		// Return a Dialog to the DialogFragment.
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			return mDialog;
+		}
 	}
 }

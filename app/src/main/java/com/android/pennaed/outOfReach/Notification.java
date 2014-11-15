@@ -1,6 +1,5 @@
 package com.android.pennaed.outOfReach;
 
-import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;

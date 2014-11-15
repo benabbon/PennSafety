@@ -16,7 +16,15 @@
 
 package com.android.pennaed.walkTimer.GeometryUtils;
 
-import static java.lang.Math.*;
+import static java.lang.Math.PI;
+import static java.lang.Math.asin;
+import static java.lang.Math.atan;
+import static java.lang.Math.cos;
+import static java.lang.Math.exp;
+import static java.lang.Math.log;
+import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
+import static java.lang.Math.tan;
 
 /**
  * Utility functions that are used my both PolyUtil and SphericalUtil.

@@ -1,7 +1,5 @@
 package com.android.pennaed.contacts;
 
-import android.app.Activity;
-
 import com.android.pennaed.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -18,7 +16,7 @@ public class SetupContacts {
 
 	List<Contact> contactList;
 
-	public SetupContacts(List<Contact> contactList){
+	public SetupContacts(List<Contact> contactList) {
 		this.contactList = contactList;
 	}
 

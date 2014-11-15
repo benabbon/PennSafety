@@ -1,18 +1,12 @@
 package com.android.pennaed.walkTimer;
 
-import android.app.Activity;
-import android.util.Log;
-import android.widget.Toast;
 import android.os.CountDownTimer;
+import android.widget.Toast;
 
 /**
  * Created by sruthi on 10/28/14.
  */
 public class CustomCountDownTimer {
-
-	public enum CounterState {RUNNING, STOPPED}
-
-	public enum TimerType {DESTINATION, MANUAL}
 
 	private android.os.CountDownTimer countDownTimer;
 	private CounterState counterState;
@@ -72,5 +66,9 @@ public class CustomCountDownTimer {
 	public void setType(TimerType timerType) {
 		this.timerType = timerType;
 	}
+
+	public enum CounterState {RUNNING, STOPPED}
+
+	public enum TimerType {DESTINATION, MANUAL}
 
 }

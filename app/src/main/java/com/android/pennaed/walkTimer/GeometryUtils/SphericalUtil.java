@@ -20,7 +20,9 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
-import static com.android.pennaed.walkTimer.GeometryUtils.MathUtil.*;
+import static com.android.pennaed.walkTimer.GeometryUtils.MathUtil.EARTH_RADIUS;
+import static com.android.pennaed.walkTimer.GeometryUtils.MathUtil.arcHav;
+import static com.android.pennaed.walkTimer.GeometryUtils.MathUtil.havDistance;
 import static java.lang.Math.PI;
 import static java.lang.Math.abs;
 import static java.lang.Math.asin;

@@ -2,7 +2,9 @@ package com.android.pennaed;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -14,8 +16,6 @@ import com.android.pennaed.InstructionVideo.InstructionVideo;
 import com.android.pennaed.contacts.ContactsFragment;
 import com.android.pennaed.emergency.EmergencyFragment;
 import com.android.pennaed.outOfReach.LocationTrackFragment;
-import com.android.pennaed.walkTimer.WalkTimerFragment;
-import com.android.pennaed.outOfReach.Notification;
 import com.android.pennaed.outOfReach.SettingsActivity;
 import com.android.pennaed.walkTimer.WalkTimerFragment;
 
@@ -134,6 +134,35 @@ public class MainNavigation extends Activity
 			return true;
 		}
 		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public void onBackPressed() {
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+		// Setting Dialog Title
+		alertDialog.setTitle(getString(R.string.main_navigation_exit_title));
+
+		// Setting Dialog Message
+		alertDialog.setMessage(getString(R.string.main_navigation_exit_details));
+
+		// Setting Positive "Yes" Button
+		alertDialog.setPositiveButton("Yes",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						finish();
+					}
+				});
+
+		// Setting Negative "NO" Button
+		alertDialog.setNegativeButton("No",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+					}
+				});
+
+		// Showing Alert Message
+		alertDialog.show();
 	}
 
 }
