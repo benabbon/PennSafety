@@ -4,14 +4,25 @@
                 android:layout_height="match_parent"
                 tools:context="com.android.pennaed.walkTimer.WalkTimerFragment">
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:alpha="0.45"
+        android:scaleType="centerCrop"
+        android:src="@drawable/walk_background"/>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@android:color/background_light"
+        android:layout_centerVertical="false"
+        android:layout_marginBottom="50pt"
         android:gravity="center_vertical|center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/walk_timer_main_text"
@@ -24,7 +35,7 @@
             android:text="@string/walk_timer_main_text"
             android:textColor="#000000"
             android:textSize="20sp"
-            />
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/manual_walk_timer_button"
