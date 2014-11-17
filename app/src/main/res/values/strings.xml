@@ -66,5 +66,7 @@
     <string name="gps_enable_alert_details">This app can use GPS to tell if you are in the range of area-limited services, and to use your location to provide you with the best services possible. Do you want to go to GPS settings? (Else network information will be used)"</string>
     <string name="main_navigation_exit_title">Exit application</string>
     <string name="main_navigation_exit_details">Are you sure you want to exit the application ?</string>
+    <string name="walk_timer_dialog_minute_text">Min: </string>
+    <string name="walk_timer_dialog_seconds_text">Sec: </string>
 
 </resources>

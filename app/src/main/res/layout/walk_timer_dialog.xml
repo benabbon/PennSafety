@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/walk_timer_dialog_layout"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp">
+    <TextView
+        android:id="@+id/min_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/walk_timer_dialog_minute_text"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/min_textbox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="left"
+        android:inputType="phone"/>
+
+    <TextView
+        android:id="@+id/sec_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/walk_timer_dialog_seconds_text"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/sec_textbox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="left"
+        android:inputType="phone"/>
+
+</LinearLayout>

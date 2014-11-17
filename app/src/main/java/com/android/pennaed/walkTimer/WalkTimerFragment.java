@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,13 +36,15 @@ public class WalkTimerFragment extends Fragment {
 				alert.setTitle(R.string.manual_timer_title);
 				alert.setMessage(R.string.manual_timer_message);
 
-				final EditText timeInputField = new EditText(getActivity());
-				timeInputField.setInputType(InputType.TYPE_CLASS_NUMBER);
-				alert.setView(timeInputField);
+				LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+				final View dialogView = layoutInflater.inflate(R.layout.walk_timer_dialog, null);
+				alert.setView(dialogView);
 
 				alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						int time = Integer.parseInt(timeInputField.getText().toString());
+						EditText minInput = (EditText)dialogView.findViewById(R.id.min_textbox);
+						EditText secInput = (EditText)dialogView.findViewById(R.id.sec_textbox);
+						int time = getTimeInSeconds(minInput.getText().toString(), secInput.getText().toString());
 						Intent intent = new Intent(getActivity(), WalkTimerMapActivity.class);
 						intent.putExtra("TIMER_VALUE", "" + time);
 						startActivity(intent);
@@ -61,6 +62,17 @@ public class WalkTimerFragment extends Fragment {
 			}
 		});
 		return view;
+	}
+
+	public int getTimeInSeconds(String minutes, String seconds) {
+		int sec = Integer.parseInt(seconds);
+		int min = Integer.parseInt(minutes);
+		sec += min*60;
+
+		if(sec <= 0)
+			sec = 60; //default of 60
+
+		return sec;
 	}
 
 	@Override
