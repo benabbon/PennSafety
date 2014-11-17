@@ -65,8 +65,12 @@ public class WalkTimerFragment extends Fragment {
 	}
 
 	public int getTimeInSeconds(String minutes, String seconds) {
-		int sec = Integer.parseInt(seconds);
-		int min = Integer.parseInt(minutes);
+		int min = 0;
+		int sec = 0;
+		if(minutes != null && !minutes.isEmpty())
+			min = Integer.parseInt(minutes);
+		if(seconds != null && !seconds.isEmpty())
+			sec = Integer.parseInt(seconds);
 		sec += min*60;
 
 		if(sec <= 0)
