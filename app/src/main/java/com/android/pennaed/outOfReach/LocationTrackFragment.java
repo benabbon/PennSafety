@@ -172,7 +172,7 @@ public class LocationTrackFragment extends Fragment
 				connectionResult.startResolutionForResult(
 						getActivity(),
 						CONNECTION_FAILURE_RESOLUTION_REQUEST);
-		        /*
+			    /*
                 * Thrown if Google Play services canceled the original
                 * PendingIntent
                 */

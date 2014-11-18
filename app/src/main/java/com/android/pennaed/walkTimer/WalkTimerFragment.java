@@ -42,8 +42,8 @@ public class WalkTimerFragment extends Fragment {
 
 				alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						EditText minInput = (EditText)dialogView.findViewById(R.id.min_textbox);
-						EditText secInput = (EditText)dialogView.findViewById(R.id.sec_textbox);
+						EditText minInput = (EditText) dialogView.findViewById(R.id.min_textbox);
+						EditText secInput = (EditText) dialogView.findViewById(R.id.sec_textbox);
 						int time = getTimeInSeconds(minInput.getText().toString(), secInput.getText().toString());
 						Intent intent = new Intent(getActivity(), WalkTimerMapActivity.class);
 						intent.putExtra("TIMER_VALUE", "" + time);
@@ -67,13 +67,13 @@ public class WalkTimerFragment extends Fragment {
 	public int getTimeInSeconds(String minutes, String seconds) {
 		int min = 0;
 		int sec = 0;
-		if(minutes != null && !minutes.isEmpty())
+		if (minutes != null && !minutes.isEmpty())
 			min = Integer.parseInt(minutes);
-		if(seconds != null && !seconds.isEmpty())
+		if (seconds != null && !seconds.isEmpty())
 			sec = Integer.parseInt(seconds);
-		sec += min*60;
+		sec += min * 60;
 
-		if(sec <= 0)
+		if (sec <= 0)
 			sec = 60; //default of 60
 
 		return sec;
