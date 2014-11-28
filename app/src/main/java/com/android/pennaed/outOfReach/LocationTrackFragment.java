@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +25,12 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 
 /**
  * Created by chaitalisg on 11/8/14.
@@ -66,15 +75,74 @@ public class LocationTrackFragment extends Fragment
 	// Define an object that holds accuracy and frequency parameters
 	LocationRequest mLocationRequest;
 	private PointInPolygon pointInPolygon;
+	private View view;
+
+	public void setMap() {
+		GoogleMap map;
+		LatLng currentPosition;
+
+		map = ((MapFragment) this.getFragmentManager().findFragmentById(R.id.outofreachmap)).getMap();
+		if (map == null) {
+			return;
+		}
+		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+		LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+		Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		if (location == null) {
+			location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		}
+		if (location == null) {
+
+			return;
+		}
+
+
+		PolygonOptions polyOptions = new PolygonOptions().add(
+				new LatLng(lat_temp[0], lng_temp[0]),
+				new LatLng(lat_temp[1], lng_temp[1]),
+				new LatLng(lat_temp[2], lng_temp[2]),
+				new LatLng(lat_temp[3], lng_temp[3]),
+				new LatLng(lat_temp[4], lng_temp[4]),
+				new LatLng(lat_temp[5], lng_temp[5]),
+				new LatLng(lat_temp[6], lng_temp[6]),
+				new LatLng(lat_temp[7], lng_temp[7]),
+				new LatLng(lat_temp[8], lng_temp[8]),
+				new LatLng(lat_temp[9], lng_temp[9])
+		).fillColor(0x7f00ff00);
+		Polygon polygon = map.addPolygon(polyOptions);
+
+		currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
+		map.setMyLocationEnabled(true);
+		map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 14));
+
+
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_location_track, container,
+
+
+		view = inflater.inflate(R.layout.fragment_location_track, container,
 				false);
 
-
+		setMap();
 		return view;
+	}
+
+	@Override
+	public void onDestroy() {
+
+
+		Fragment curMap = (getFragmentManager().findFragmentById(R.id.outofreachmap));
+		FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+		ft.remove(curMap);
+		try {
+			ft.commit();
+		} catch (IllegalStateException e) {
+
+		}
+		super.onDestroy();
 	}
 
 	@Override

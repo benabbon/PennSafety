@@ -32,6 +32,7 @@ public class MainNavigation extends Activity
 	 * Used to store the last screen title. For use in {@link #restoreActionBar()}.
 	 */
 	private CharSequence mTitle;
+	private int prevPosition = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,9 @@ public class MainNavigation extends Activity
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
+		if (prevPosition == position)
+			return;
+		prevPosition = position;
 		switch (position) {
 			case 0:
 				fragmentManager.beginTransaction()
