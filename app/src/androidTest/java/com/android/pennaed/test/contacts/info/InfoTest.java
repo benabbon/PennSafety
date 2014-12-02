@@ -1,4 +1,4 @@
-package com.android.pennaed.test;
+package com.android.pennaed.test.contacts.info;
 
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
