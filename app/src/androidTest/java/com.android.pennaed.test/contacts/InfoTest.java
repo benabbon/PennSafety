@@ -1,3 +1,4 @@
+import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 
 import com.android.pennaed.contacts.Info;
@@ -9,7 +10,7 @@ public class InfoTest extends ActivityUnitTestCase<Info> {
 		super(Info.class);
 	}
 
-	public void setUp() {
+	public void setUp() throws Exception {
 		super.setUp();
 		Intent intent = new Intent(getInstrumentation().getTargetContext(), Info.class);
 		startActivity(intent, null, null);
