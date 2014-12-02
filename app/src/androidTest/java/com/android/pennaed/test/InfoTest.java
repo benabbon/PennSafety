@@ -1,11 +1,19 @@
+package com.android.pennaed.test;
+
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.pennaed.contacts.Info;
 import com.android.pennaed.R;
 
+/*
+created by sruthi
+ */
+
 public class InfoTest extends ActivityUnitTestCase<Info> {
 	private Info info;
+
 	public InfoTest() {
 		super(Info.class);
 	}
@@ -17,6 +25,7 @@ public class InfoTest extends ActivityUnitTestCase<Info> {
 		info = getActivity();
 	}
 
+	@SmallTest
 	public void testNonNullViews() {
 		int tvTitle = R.id.tvTitle;
 		assertNotNull(info.findViewById(tvTitle));

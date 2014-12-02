@@ -16,7 +16,7 @@ android {
         applicationId "com.android.pennaed"
         minSdkVersion 16
         targetSdkVersion 17
-        testPackageName "com.android.pennaed.test"
+        testApplicationId "com.android.pennaed.test"
     }
     buildTypes {
         release {
