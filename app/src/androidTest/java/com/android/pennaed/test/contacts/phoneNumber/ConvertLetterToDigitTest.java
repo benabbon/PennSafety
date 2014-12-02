@@ -9,8 +9,8 @@ import junit.framework.TestCase;
  * Created by sruthi on 12/2/14.
  */
 //tests only run for smaller case letters
-public class TestConvertLetterToDigit extends TestCase{
-	public TestConvertLetterToDigit() {
+public class ConvertLetterToDigitTest extends TestCase{
+	public ConvertLetterToDigitTest() {
 		super();
 	}
 

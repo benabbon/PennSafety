@@ -9,8 +9,8 @@ import junit.framework.TestCase;
 /**
  * Created by sruthi on 12/2/14.
  */
-public class TestConvertToNum extends TestCase {
-	public TestConvertToNum() {
+public class ConvertToNumTest extends TestCase {
+	public ConvertToNumTest() {
 		super();
 	}
 
