@@ -27,8 +27,7 @@ public class Notification {
 		NotificationCompat.Builder mBuilder =
 				new NotificationCompat.Builder(context)
 						.setSmallIcon(R.drawable.penn_logo)
-						.setContentTitle("Out of reach")
-						.setContentText("You're now in a zone where penn safety can't reach you.");
+						.setContentTitle("Out of Penn Patrol Zone");
 		// Specifiy the call back when clicking on the notification.
 		Intent resultIntent = new Intent(context, MainNavigation.class);
 
