@@ -53,7 +53,7 @@ public class SetupContacts {
 				-75.182544};
 
 		// DPS
-		Contact DPS = new ContactStatic("DPS", Long.parseLong("2155733333"),
+		Contact DPS = new ContactStatic("Public Safety", Long.parseLong("2155733333"),
 				"215-573-3333\nAvailable 24/7");
 
 		DPS.setImageID(R.drawable.penn_dps);

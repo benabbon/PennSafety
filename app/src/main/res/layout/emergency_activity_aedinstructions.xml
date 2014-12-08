@@ -19,7 +19,7 @@
         android:gravity="center_horizontal"
         android:text="@string/aed_insn_title"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -32,7 +32,7 @@
         android:gravity="center_horizontal"
         android:text="@string/aed_insn_1"
         android:textColor="#000000"
-        android:textSize="15sp"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/aed_insn_text2"
@@ -44,7 +44,7 @@
         android:gravity="center_horizontal"
         android:text="@string/aed_insn_2"
         android:textColor="#000000"
-        android:textSize="15sp"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/aed_insn_text3"
@@ -56,7 +56,7 @@
         android:gravity="center_horizontal"
         android:text="@string/aed_insn_3"
         android:textColor="#000000"
-        android:textSize="15sp"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/aed_insn_text4"
@@ -68,90 +68,7 @@
         android:gravity="center_horizontal"
         android:text="@string/aed_insn_4"
         android:textColor="#000000"
-        android:textSize="15sp"/>
+        android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/aed_insn_text5"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_horizontal"
-        android:text="@string/aed_insn_5"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
-
-    <TextView
-        android:id="@+id/aed_insn_text6"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_horizontal"
-        android:text="@string/aed_insn_6"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
-
-    <TextView
-        android:id="@+id/aed_insn_text7"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_horizontal"
-        android:text="@string/aed_insn_7"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
-
-    <TextView
-        android:id="@+id/aed_insn_text8"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_horizontal"
-        android:text="@string/aed_insn_8"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
-
-    <TextView
-        android:id="@+id/aed_insn_text9"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_horizontal"
-        android:text="@string/aed_insn_9"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
-
-    <TextView
-        android:id="@+id/aed_insn_text10"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_horizontal"
-        android:text="@string/aed_insn_10"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
-
-    <TextView
-        android:id="@+id/aed_insn_text11"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_horizontal"
-        android:text="@string/aed_insn_11"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
 
 </LinearLayout>
