@@ -8,6 +8,7 @@ import com.android.pennaed.walkTimer.CustomCountDownTimer;
 import com.android.pennaed.walkTimer.WalkTimerMapActivity;
 
 import junit.framework.TestCase;
+import com.android.pennaed.R;
 
 /**
  * Created by sruthi on 12/2/14.
@@ -15,7 +16,7 @@ import junit.framework.TestCase;
 public class TimerStateTest extends ActivityUnitTestCase<WalkTimerMapActivity>{
 	private WalkTimerMapActivity parentActivity;
 	private CustomCountDownTimer timer;
-	TimerStateTest() {
+	public TimerStateTest() {
 		super(WalkTimerMapActivity.class);
 	}
 
