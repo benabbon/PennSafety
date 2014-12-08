@@ -53,7 +53,7 @@ public class SetupContacts {
 				-75.182544};
 
 		// DPS
-		Contact DPS = new ContactStatic("DPS", Long.parseLong("2155733333"),
+		Contact DPS = new ContactStatic("Public Safety", Long.parseLong("2155733333"),
 				"215-573-3333\nAvailable 24/7");
 
 		DPS.setImageID(R.drawable.penn_dps);
@@ -113,7 +113,7 @@ public class SetupContacts {
 				"Penn Transit",
 				Long.parseLong("2158987433"),
 				"215-898-RIDE\n"
-						+ "Mon - Wed: 6pm - 3am; Limited on-call service, 3am - 7am",
+						+ "Mon - Sun: 6pm - 3am; Limited on-call service, 3am - 7am",
 				getSchedulePennTransit());
 
 		PennTransit.setImageID(R.drawable.penn_logo);
@@ -204,10 +204,10 @@ public class SetupContacts {
 		schedule.put(ContactStatic.Day.MONDAY, MTWHours);
 		schedule.put(ContactStatic.Day.TUESDAY, MTWHours);
 		schedule.put(ContactStatic.Day.WEDNESDAY, MTWHours);
-		schedule.put(ContactStatic.Day.THURSDAY, hours);
-		schedule.put(ContactStatic.Day.FRIDAY, hours);
-		schedule.put(ContactStatic.Day.SATURDAY, hours);
-		schedule.put(ContactStatic.Day.SUNDAY, hours);
+		schedule.put(ContactStatic.Day.THURSDAY, MTWHours);
+		schedule.put(ContactStatic.Day.FRIDAY, MTWHours);
+		schedule.put(ContactStatic.Day.SATURDAY, MTWHours);
+		schedule.put(ContactStatic.Day.SUNDAY, MTWHours);
 
 		return schedule;
 	}
