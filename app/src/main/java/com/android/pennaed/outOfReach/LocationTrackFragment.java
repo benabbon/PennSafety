@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.android.pennaed.R;
 import com.android.pennaed.contacts.PointInPolygon;
+import com.android.pennaed.emergency.AppVars;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -61,12 +63,17 @@ public class LocationTrackFragment extends Fragment
 	LocationClient mLocationClient;
 	// Set the valid location range for emergency organizations to:
 	// 43rd to 30th, market to baltimore
-	double[] lat_temp = {39.954844, 39.958002, 39.952491, 39.951472,
-			39.949449, 39.949523, 39.949869, 39.949260, 39.949663,
-			39.951571};
-	double[] lng_temp = {-75.183274, -75.208213, -75.209388, -75.209398,
-			-75.209291, -75.207167, -75.201309, -75.184550, -75.184057,
-			-75.182544};
+	double[] lat_temp = {39.954582,39.956683,39.959574,39.959233,39.957880,
+                        39.957555,39.956893,39.957909,39.949605,39.950004,
+                        39.949572,39.944534,39.944036,39.943695,39.943230,
+                        39.949247,39.951645,};
+    double[] lng_temp = {-75.181359,-75.198048,-75.197120,-75.202039,-75.201830,
+                        -75.199496,-75.199673,-75.208101,-75.209249,-75.201347,-75.199850,
+                     -75.197935, -75.196835,-75.195950,-75.192994,-75.184631,-75.182491};
+
+
+    double[] lat_t = { 39.959498, 39.947933, 39.943473 , 39.944686,   39.943955, 39.940899,  39.945463,   39.943972,   39.943755, 39.954564,    39.964025,   39.964025, 39.961267, 39.958878,  39.958609,   39.958062};
+    double[] lng_t = {-75.220938,-75.223263, -75.220235 , -75.218454,  -75.217250 ,-75.212604 ,-75.208627 ,-75.206221 ,-75.192384 ,-75.181245,  -75.184514 , -75.184514 ,-75.206659 ,-75.206224 ,  -75.207937 , -75.209423};
 	// Handle to SharedPreferences for this app
 	SharedPreferences mPrefs;
 
@@ -76,16 +83,16 @@ public class LocationTrackFragment extends Fragment
 	LocationRequest mLocationRequest;
 	private PointInPolygon pointInPolygon;
 	private View view;
-
+    private GoogleMap map;
 	public void setMap() {
-		GoogleMap map;
+
 		LatLng currentPosition;
 
-		map = ((MapFragment) this.getFragmentManager().findFragmentById(R.id.outofreachmap)).getMap();
+
 		if (map == null) {
 			return;
 		}
-		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
 		LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 		Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if (location == null) {
@@ -97,19 +104,6 @@ public class LocationTrackFragment extends Fragment
 		}
 
 
-		PolygonOptions polyOptions = new PolygonOptions().add(
-				new LatLng(lat_temp[0], lng_temp[0]),
-				new LatLng(lat_temp[1], lng_temp[1]),
-				new LatLng(lat_temp[2], lng_temp[2]),
-				new LatLng(lat_temp[3], lng_temp[3]),
-				new LatLng(lat_temp[4], lng_temp[4]),
-				new LatLng(lat_temp[5], lng_temp[5]),
-				new LatLng(lat_temp[6], lng_temp[6]),
-				new LatLng(lat_temp[7], lng_temp[7]),
-				new LatLng(lat_temp[8], lng_temp[8]),
-				new LatLng(lat_temp[9], lng_temp[9])
-		).fillColor(0x7f00ff00);
-		Polygon polygon = map.addPolygon(polyOptions);
 
 		currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
 		map.setMyLocationEnabled(true);
@@ -118,6 +112,64 @@ public class LocationTrackFragment extends Fragment
 
 	}
 
+    public void initMap(){
+
+        LatLng currentPosition;
+
+
+        if (map == null) {
+            return;
+        }
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        PolygonOptions polyOptions = new PolygonOptions().add(
+                new LatLng(lat_t[0], lng_t[0]),
+                new LatLng(lat_t[1], lng_t[1]),
+                new LatLng(lat_t[2], lng_t[2]),
+                new LatLng(lat_t[3], lng_t[3]),
+                new LatLng(lat_t[4], lng_t[4]),
+                new LatLng(lat_t[5], lng_t[5]),
+                new LatLng(lat_t[6], lng_t[6]),
+                new LatLng(lat_t[7], lng_t[7]),
+                new LatLng(lat_t[8], lng_t[8]),
+                new LatLng(lat_t[9], lng_t[9]),
+                new LatLng(lat_t[10], lng_t[10]),
+                new LatLng(lat_t[11], lng_t[11]),
+                new LatLng(lat_t[12], lng_t[12]),
+                new LatLng(lat_t[13], lng_t[13]),
+                new LatLng(lat_t[14], lng_t[14])
+        ).fillColor(0x2fff00ff).strokeColor(0xffffff);
+
+        PolygonOptions polyOptionsInner = new PolygonOptions().add(
+                new LatLng(lat_temp[0], lng_temp[0]),
+                new LatLng(lat_temp[1], lng_temp[1]),
+                new LatLng(lat_temp[2], lng_temp[2]),
+                new LatLng(lat_temp[3], lng_temp[3]),
+                new LatLng(lat_temp[4], lng_temp[4]),
+                new LatLng(lat_temp[5], lng_temp[5]),
+                new LatLng(lat_temp[6], lng_temp[6]),
+                new LatLng(lat_temp[7], lng_temp[7]),
+                new LatLng(lat_temp[8], lng_temp[8]),
+                new LatLng(lat_temp[9], lng_temp[9]),
+                new LatLng(lat_temp[10], lng_temp[10]),
+                new LatLng(lat_temp[11], lng_temp[11]),
+                new LatLng(lat_temp[12], lng_temp[12]),
+                new LatLng(lat_temp[13], lng_temp[13]),
+                new LatLng(lat_temp[14], lng_temp[14]),
+                new LatLng(lat_temp[15], lng_temp[15]),
+                new LatLng(lat_temp[16], lng_temp[16])
+        ).fillColor(0x2FA50000).strokeColor(0xffffff);
+        Polygon polygon = map.addPolygon(polyOptions);
+        Polygon polygonInner = map.addPolygon(polyOptionsInner);
+
+        currentPosition = new LatLng(lat_temp[0],lng_temp[0]);
+        map.setMyLocationEnabled(true);
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 12));
+
+    }
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
@@ -125,10 +177,17 @@ public class LocationTrackFragment extends Fragment
 
 		view = inflater.inflate(R.layout.fragment_location_track, container,
 				false);
-
+        map = ((MapFragment) this.getFragmentManager().findFragmentById(R.id.outofreachmap)).getMap();
+        checkGPS();
+        initMap();
 		setMap();
 		return view;
 	}
+
+    public void checkGPS(){
+        AppVars.getInstance().enableLocation(getActivity());
+
+    }
 
 	@Override
 	public void onDestroy() {
