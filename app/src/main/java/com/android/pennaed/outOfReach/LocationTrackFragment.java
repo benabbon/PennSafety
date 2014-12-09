@@ -260,8 +260,6 @@ public class LocationTrackFragment extends Fragment
 	 */
 	@Override
 	public void onConnected(Bundle dataBundle) {
-		// Display the connection status
-		Toast.makeText(getActivity(), "Connected", Toast.LENGTH_SHORT).show();
 		// If already requested, start periodic updates
 
 		//mLocationClient.requestLocationUpdates(mLocationRequest, this);
