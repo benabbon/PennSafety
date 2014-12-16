@@ -20,7 +20,7 @@ public class CallActivityTest extends ActivityUnitTestCase<CallActivity>{
 
 	public void setUp() throws Exception {
 		super.setUp();
-		Intent intent = new Intent(getInstrumentation().getTargetContext(), Info.class);
+		Intent intent = new Intent(getInstrumentation().getTargetContext(), CallActivity.class);
 		startActivity(intent, null, null);
 		callActivity = getActivity();
 	}

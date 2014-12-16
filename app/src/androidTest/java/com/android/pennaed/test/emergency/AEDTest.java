@@ -28,18 +28,15 @@ public class AEDTest extends TestCase{
 		byte[] b = new byte[20];
 		new Random().nextBytes(b);
 		aed = new AED("1", "test", 39.954844, -75.183274, "test address", "lobby", "testname", 215483, new Date(System.currentTimeMillis()), new ParseFile(b), 1);
-		//(String id, String name, double latitude, double longitude, String address, String inBuildingDirection,
-//				String contactName, int contactPhone, Date updatedAt, ParseFile photo, int integerId));
 	}
 
 	@SmallTest
-	public void testAED(){
+	public void testAEDFields(){
 
 		assertEquals(aed.getIntegerId(), 1);
 		assertEquals(aed.getLatitude(), 39.954844);
 		assertEquals(aed.getLongitude(), -75.183274);
 		assertEquals(aed.getInBuildingLocation(), "lobby");
 		assertEquals(aed.getName(), "test");
-
 	}
 }
