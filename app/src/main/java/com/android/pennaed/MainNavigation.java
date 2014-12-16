@@ -13,11 +13,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.android.pennaed.InstructionVideo.InstructionVideo;
+import com.android.pennaed.contacts.ContactDB;
 import com.android.pennaed.contacts.ContactsFragment;
 import com.android.pennaed.emergency.EmergencyFragment;
 import com.android.pennaed.outOfReach.LocationTrackFragment;
 import com.android.pennaed.outOfReach.SettingsActivity;
 import com.android.pennaed.walkTimer.WalkTimerFragment;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 
 public class MainNavigation extends Activity
@@ -32,6 +35,7 @@ public class MainNavigation extends Activity
 	 * Used to store the last screen title. For use in {@link #restoreActionBar()}.
 	 */
 	private CharSequence mTitle;
+	private int prevPosition = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,11 @@ public class MainNavigation extends Activity
 		mNavigationDrawerFragment.setUp(
 				R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+
+		//Initialize and register parse objects
+		Parse.initialize(this, "cPnzg4beRc88vyyakrDrEWokv6cNnyiF0jEq35N2",
+				"l71EVwL99xwrbeupB3IkhWA4hELdSfjHUYnkqsIG");
+		ParseObject.registerSubclass(ContactDB.class);
 	}
 
 	@Override
@@ -65,6 +74,9 @@ public class MainNavigation extends Activity
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
+		if (prevPosition == position)
+			return;
+		prevPosition = position;
 		switch (position) {
 			case 0:
 				fragmentManager.beginTransaction()

@@ -71,7 +71,9 @@ public class SettingsActivity extends PreferenceActivity {
 		fakeHeader.setTitle(R.string.pref_header_notifications);
 		getPreferenceScreen().addPreference(fakeHeader);
 		addPreferencesFromResource(R.xml.pref_notification);
-		final CheckBoxPreference checkBoxPreference = (CheckBoxPreference) getPreferenceManager().findPreference("allow_notifications");
+		//final CheckBoxPreference checkBoxPreference = (CheckBoxPreference) getPreferenceManager().findPreference("allow_notifications");
+		final CustomCheckBoxPreference checkBoxPreference;
+		checkBoxPreference = (CustomCheckBoxPreference) getPreferenceManager().findPreference("allow_notifications");
 		checkBoxPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
