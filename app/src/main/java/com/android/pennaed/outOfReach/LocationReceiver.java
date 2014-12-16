@@ -49,4 +49,12 @@ public class LocationReceiver extends BroadcastReceiver {
 			showNotification = true;
 		}
 	}
+
+	public PointInPolygon getPointInPolygon(){
+		return pointInPolygon;
+	}
+
+	public boolean getShowNotifications(){
+		return showNotification;
+	}
 }
