@@ -25,7 +25,7 @@ public class AEDInstructionsActivityTest extends ActivityUnitTestCase<AEDInstruc
 
 	public void setUp() throws Exception {
 		super.setUp();
-		Intent intent = new Intent(getInstrumentation().getTargetContext(), Info.class);
+		Intent intent = new Intent(getInstrumentation().getTargetContext(), AEDInstructionsActivityTest.class);
 		startActivity(intent, null, null);
 		aedInstructionsActivity = getActivity();
 	}
@@ -47,27 +47,6 @@ public class AEDInstructionsActivityTest extends ActivityUnitTestCase<AEDInstruc
 		int aedText4 = R.id.aed_insn_text4;
 		assertNotNull(aedInstructionsActivity.findViewById(aedText4));
 
-		int aedText5 = R.id.aed_insn_text5;
-		assertNotNull(aedInstructionsActivity.findViewById(aedText5));
-
-		int aedText6 = R.id.aed_insn_text6;
-		assertNotNull(aedInstructionsActivity.findViewById(aedText6));
-
-		int aedText7 = R.id.aed_insn_text7;
-		assertNotNull(aedInstructionsActivity.findViewById(aedText7));
-
-		int aedText8 = R.id.aed_insn_text8;
-		assertNotNull(aedInstructionsActivity.findViewById(aedText8));
-
-		int aedText9 = R.id.aed_insn_text9;
-		assertNotNull(aedInstructionsActivity.findViewById(aedText9));
-
-		int aedText10 = R.id.aed_insn_text10;
-		assertNotNull(aedInstructionsActivity.findViewById(aedText10));
-
-		int aedText11 = R.id.aed_insn_text11;
-		assertNotNull(aedInstructionsActivity.findViewById(aedText11));
-
 	}
 
 	@SmallTest
@@ -78,32 +57,11 @@ public class AEDInstructionsActivityTest extends ActivityUnitTestCase<AEDInstruc
 		int aedText2 = R.id.aed_insn_text2;
 		assertEquals("Open lid of AED", ((TextView)aedInstructionsActivity.findViewById(aedText2)).getText());
 
-		int aedText3 = R.id.aed_insn_text1;
-		assertEquals("Take AED to patient", ((TextView)aedInstructionsActivity.findViewById(aedText1)).getText());
+		int aedText3 = R.id.aed_insn_text3;
+		assertEquals("AED will voice prompt use instructions", ((TextView)aedInstructionsActivity.findViewById(aedText3)).getText());
 
-		int aedText4 = R.id.aed_insn_text1;
-		assertEquals("Take AED to patient", ((TextView)aedInstructionsActivity.findViewById(aedText1)).getText());
-
-		int aedText4 = R.id.aed_insn_text1;
-		assertEquals("Take AED to patient", ((TextView)aedInstructionsActivity.findViewById(aedText1)).getText());
-
-		int aedText4 = R.id.aed_insn_text1;
-		assertEquals("Take AED to patient", ((TextView)aedInstructionsActivity.findViewById(aedText1)).getText());
-
-		int aedText4 = R.id.aed_insn_text1;
-		assertEquals("Take AED to patient", ((TextView)aedInstructionsActivity.findViewById(aedText1)).getText());
-
-		int aedText4 = R.id.aed_insn_text1;
-		assertEquals("Take AED to patient", ((TextView)aedInstructionsActivity.findViewById(aedText1)).getText());
-
-		int aedText4 = R.id.aed_insn_text1;
-		assertEquals("Take AED to patient", ((TextView)aedInstructionsActivity.findViewById(aedText1)).getText());
-
-		int aedText4 = R.id.aed_insn_text1;
-		assertEquals("Stand clear of patient if shock is advised", ((TextView)aedInstructionsActivity.findViewById(aedText1)).getText());
-
-		int aedText11 = R.id.aed_insn_text11;
-		assertEquals("After shock AED will prompt users to continue CPR", ((TextView)aedInstructionsActivity.findViewById(aedText11)).getText());
+		int aedText4 = R.id.aed_insn_text4;
+		assertEquals("Follow instructions closely", ((TextView)aedInstructionsActivity.findViewById(aedText4)).getText());
 
 	}
 
