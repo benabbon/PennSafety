@@ -3,6 +3,7 @@ package com.android.pennaed.test.emergency.cprInstructionsActivity;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.pennaed.R;
@@ -53,17 +54,24 @@ public class CPRInstructionsActivityTest extends ActivityUnitTestCase<CPRInstruc
 
 	@SmallTest
 	public void testTextMatch() {
-		int aedText1 = R.id.aed_insn_text1;
-		assertEquals("Take AED to patient", ((TextView)cprInstructionsActivity.findViewById(aedText1)).getText());
+		int cprText1Id = R.id.cpr_insn_text1;
+		assertEquals("Place one hand on top of the other in center of chest", ((TextView)cprInstructionsActivity.findViewById(cprText1Id)).getText());
 
-		int aedText2 = R.id.aed_insn_text2;
-		assertEquals("Open lid of AED", ((TextView)cprInstructionsActivity.findViewById(aedText2)).getText());
+		int cprText2Id = R.id.cpr_insn_text2;
+		assertEquals("Push downward hard and fast", ((TextView)cprInstructionsActivity.findViewById(cprText2Id)).getText());
 
-		int aedText3 = R.id.aed_insn_text3;
-		assertEquals("AED will voice prompt use instructions", ((TextView)cprInstructionsActivity.findViewById(aedText3)).getText());
+		int cprText3Id = R.id.cpr_insn_text3;
+		assertEquals("100 compressions per minute", ((TextView)cprInstructionsActivity.findViewById(cprText3Id)).getText());
 
-		int aedText4 = R.id.aed_insn_text4;
-		assertEquals("Follow instructions closely", ((TextView)cprInstructionsActivity.findViewById(aedText4)).getText());
+		int cprText4Id = R.id.cpr_insn_text4;
+		assertEquals("Continue until help arrives", ((TextView)cprInstructionsActivity.findViewById(cprText4Id)).getText());
+
+	}
+
+	@SmallTest
+	public void testButtonText() {
+		int aedButtonId = R.id.aed_button;
+		assertEquals("Click here for AED locations", ((Button)cprInstructionsActivity.findViewById(aedButtonId)).getText());
 
 	}
 
