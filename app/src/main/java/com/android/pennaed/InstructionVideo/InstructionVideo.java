@@ -55,4 +55,11 @@ public class InstructionVideo extends Fragment {
 	}
 
 
+	public String getSrcPath() {
+		return SrcPath;
+	}
+
+	public VideoView getVideoview(){
+		return videoview;
+	}
 }
