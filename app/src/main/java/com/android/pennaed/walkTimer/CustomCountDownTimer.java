@@ -28,8 +28,8 @@ public class CustomCountDownTimer {
 
 	public void onTimerTick(long millisUntilFinished) {
 		long secs = millisUntilFinished / 1000;
-		parentActivity.changeTimerButtonText(secs / 60 + "m " + (secs % 60) + "s");
-	}
+	parentActivity.changeTimerButtonText(secs / 60 + "m " + (secs % 60) + "s");
+}
 
 	public void startTimer(long timeInMs) {
 		this.timeInMs = timeInMs;
@@ -70,5 +70,13 @@ public class CustomCountDownTimer {
 	public enum CounterState {RUNNING, STOPPED}
 
 	public enum TimerType {DESTINATION, MANUAL}
+
+	public void setCounterState(CounterState counterState) {
+		this.counterState = counterState;
+	}
+
+	public CounterState getCounterState() {
+		return counterState;
+	}
 
 }

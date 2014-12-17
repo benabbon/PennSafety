@@ -3,6 +3,7 @@ package com.android.pennaed.test.walkTimer.customCountDownTimer;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+import android.widget.Button;
 
 import com.android.pennaed.walkTimer.CustomCountDownTimer;
 import com.android.pennaed.walkTimer.WalkTimerMapActivity;
@@ -13,45 +14,42 @@ import com.android.pennaed.R;
 /**
  * Created by sruthi on 12/2/14.
  */
-public class TimerStateTest extends ActivityUnitTestCase<WalkTimerMapActivity>{
-	private WalkTimerMapActivity parentActivity;
+public class TimerStateTest extends TestCase{
 	private CustomCountDownTimer timer;
-	public TimerStateTest() {
-		super(WalkTimerMapActivity.class);
-	}
+	private WalkTimerMapActivity walkTimerMapActivity;
 
 	public void setUp() throws Exception {
 		super.setUp();
-		Intent intent = new Intent(getInstrumentation().getTargetContext(), WalkTimerMapActivity.class);
-		startActivity(intent, null, null);
-		parentActivity = getActivity();
-		timer = new CustomCountDownTimer(parentActivity);
+		walkTimerMapActivity = new WalkTimerMapActivity() {
+			@Override
+			public void changeTimerButtonText(String text) {
+				return;
+			}
+		};
+		timer = new CustomCountDownTimer(walkTimerMapActivity);
 	}
 
 	@SmallTest
-	public void testStartTimer() {
-		timer.startTimer(100000);
+	public void testIsRunningValid() {
+		timer.setCounterState(CustomCountDownTimer.CounterState.RUNNING);
 		assertEquals(true, timer.isRunning());
 	}
 
 	@SmallTest
-	public void testFinishTimer() {
-		timer.startTimer(20000);
-		timer.stopTimer();
-		assertEquals(true, timer.isStopped());
+	public void testIsRunningInvalid() {
+		timer.setCounterState(CustomCountDownTimer.CounterState.STOPPED);
 		assertEquals(false, timer.isRunning());
 	}
 
 	@SmallTest
-	public void testRunningTimer() {
-		timer.startTimer(10000);
-		assertEquals(true, timer.isRunning());
-		try {
-			Thread.sleep(10000);
-			assertEquals(false, timer.isRunning());
-			assertEquals(true, timer.isStopped());
-		} catch (InterruptedException e) {
-			fail("Exception occurred");
-		}
+	public void testIsStoppedValid() {
+		timer.setCounterState(CustomCountDownTimer.CounterState.STOPPED);
+		assertEquals(true, timer.isStopped());
+	}
+
+	@SmallTest
+	public void testIsStoppedInvalid() {
+		timer.setCounterState(CustomCountDownTimer.CounterState.RUNNING);
+		assertEquals(false, timer.isStopped());
 	}
 }
